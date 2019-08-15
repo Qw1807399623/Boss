@@ -40,9 +40,10 @@
                 </div>
                 <div class="restDiv">
                     <input class="myRestInput" disabled placeholder="请向右滑动验证"/>
-                    <div class="slideDiv">
+                    <div class="slideDiv" :style="myPosition" @touchstart="tStart($event)" @touchmove="tMove($event)" @touchend="tEnd">
                         <img src="../../public/img/slide.png" />
                     </div>
+                    <input type="text" v-show="myPosition.left==297+'px'" disabled class="RestOkInput" placeholder="验证成功">
                 </div>
                 <div class="upwdDiv">
                     <img src="../../public/img/Regpasswork.png"/>
@@ -78,13 +79,64 @@ export default {
             show:undefined,
             myimgs:true,
             identifyCodes: "1234567890",
-            identifyCode: ""
+            identifyCode: "",
+            myPosition:{left:0},
+            tData:{start:0,end:0}//touch产生的参数
         }
     },
     components:{
         "s-identify":SIdentify
     },
     methods:{
+        // touchstart
+        tStart(e) {
+            let tData = this.tData;
+            tData.start = e.touches[0].pageX;
+            // console.log(this.tData.start)
+        },
+        // touchmove
+        tMove(e) {
+            let tData = this.tData;
+            tData.end = e.touches[0].pageX;
+            // console.log(this.tData.end)
+            let myPosition = this.myPosition;
+            let left = tData.end-tData.start + 'px';
+            myPosition.left = left;
+            console.log(myPosition.left)
+            if(tData.end-tData.start<0){
+                myPosition.left=0+"px"
+                return
+            }
+            if(tData.end-tData.start>300){
+                myPosition.left=297+"px"
+                // return
+            }
+            // if(myPosition.left>"295px"){
+            //     myPosition.left="295px"
+            // }
+        },
+        // touchend
+        tEnd(){
+            let tData = this.tData;
+            if(this.myPosition.left<"295px"){
+                this.myPosition.left=0
+            }
+            // let myPosition = this.myPosition;
+            // let left = tData.end-tData.start + 'px';
+            // myPosition.left = left;
+        },
+        
+        // slideToTest(e){
+        //       let offsetX=e.offsetX
+        //       console.log(offsetX)
+        //      let left = e.clientX - offsetX;
+        //     console.log(left);  
+                   
+        //             this.myPosition.left=left+"px"
+                 
+        //     },
+            
+     
         ChangeVal(e){
             if(e.target.dataset.canclick){
             this.val=e.target.dataset.val
@@ -113,7 +165,9 @@ export default {
             for(let i = 0;i<l;i++){
                 this.identifyCode+=this.identifyCodes[this.ramdomNum(0,this.identifyCodes.length)]
             }
-        }
+        },
+
+        
     },
     mounted() {
         this.identifyCode="";
@@ -227,6 +281,7 @@ export default {
 }
 #BoosReg>.formInput .restDiv{
     position: relative;
+    left:0;
 }
 #BoosReg>.formInput .restDiv .slideDiv{
     position: absolute;
@@ -235,6 +290,7 @@ export default {
     width: 48px;
     height: 40px;
     top:30px;
+    /* left:10px; */
     text-align: center;
     line-height: 39px;
     z-index: 1;
@@ -244,6 +300,22 @@ export default {
     position: relative;
     top:5px;
 }
+#BoosReg>.formInput .restDiv .RestOkInput{
+    position: absolute;
+     width: 346px;
+    height: 42px;
+    background:rgb(23, 207, 106);
+    border:1px solid #ddd;
+    padding: 0;
+    color: #000;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    top:30px;
+    left: 0;
+    z-index: 10;
+}
+
 #BoosReg>.formInput>.upwdDiv{
     position: relative;
 }
