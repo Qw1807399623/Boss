@@ -1,0 +1,35 @@
+.contanier {
+  padding: 0.5rem 0.75rem;
+  background: #222;
+  color: #fff; }
+  .contanier .au_detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+    .contanier .au_detail .au_title {
+      margin: 1.25rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%; }
+      .contanier .au_detail .au_title .au_dt_lf .au_dt_tit {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 2rem; }
+      .contanier .au_detail .au_title .au_dt_lf .au_dt_stit {
+        font-size: 0.75em;
+        color: #aaaaaa; }
+    .contanier .au_detail .au_boon {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      margin: 10px 0; }
+      .contanier .au_detail .au_boon .au_b_lf > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; }
+      .contanier .au_detail .au_boon .au_b_rg {
+        color: #aaaaaa; }
