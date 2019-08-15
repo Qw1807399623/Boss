@@ -107,6 +107,7 @@ export default {
          refreshCode(){
             this.identifyCode="";
             this.makeCode(this.identifyCodes,4)
+            console.log(1);
         },
         makeCode(o,l){
             for(let i = 0;i<l;i++){
