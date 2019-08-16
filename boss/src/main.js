@@ -5,7 +5,9 @@ import store from './store'
 
 //mint-ui
 import MintUi from "mint-ui"
+import "mint-ui/lib/style.css"
 Vue.use(MintUi)
+
 Vue.config.productionTip = false
 
 new Vue({
