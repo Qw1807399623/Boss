@@ -215,6 +215,7 @@ export default {
             if(e.target.dataset.canclick){
             this.val=e.target.dataset.val
             console.log(e.target.dataset.val);
+            this.show=undefined;
             }
         },
         ChangeShow(){
