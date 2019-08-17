@@ -1,6 +1,6 @@
 <template>
      <div>
-        <div id="BoosReg">    
+        <div id="BoosLogin">    
             <div class="RegTitle">
                 <h3>登录BOSS直聘</h3>
             </div>
@@ -161,7 +161,6 @@ export default {
             }
         },
         ChangeShow(){
-           
             if(this.show==1){
                 this.show=undefined;
                 this.myimgs=false;
@@ -174,23 +173,23 @@ export default {
 }
 </script>
 <style scoped>
-#BoosReg{
+#BoosLogin{
     padding:0px 15px;    
     box-sizing: border-box;
 }
-#BoosReg>.RegTitle{
+#BoosLogin>.RegTitle{
     padding: 30px 0;
     position: relative;
 }
-#BoosReg>.RegTitle>h3{
+#BoosLogin>.RegTitle>h3{
     color: #5dd5c8;
     margin:0;
     font-size: 26px;
 }
-#BoosReg>.formInput{
+#BoosLogin>.formInput{
     position: relative;
 }
-#BoosReg>.formInput>.myUnameInput{
+#BoosLogin>.formInput>.myUnameInput{
     position: relative;
     box-sizing: border-box;
     font-size:14px;
@@ -203,7 +202,7 @@ export default {
     padding-right:18px;  
     border:1px solid #ddd;
 }
-#BoosReg>.formInput>.Regphone{
+#BoosLogin>.formInput>.Regphone{
     width: 20px;
     height: 23px;
     position: absolute;
@@ -211,17 +210,17 @@ export default {
     left: 15px;
     z-index: 1;
 }
-#BoosReg>.formInput>.Downpull{
+#BoosLogin>.formInput>.Downpull{
     position: absolute;
     top:26px;
     left: 38px;
     width: 50px;
 }
-#BoosReg>.formInput>.Downpull span{
+#BoosLogin>.formInput>.Downpull span{
     font-size: 13px;
     cursor: pointer;
 }
-#BoosReg>.formInput>.Downpull img{
+#BoosLogin>.formInput>.Downpull img{
     position: relative; 
     top:2px;
     left: 6px;
@@ -264,7 +263,7 @@ export default {
     float: right;
 }
 
-#BoosReg>.formInput .myRestInput{
+#BoosLogin>.formInput .myRestInput{
     width: 345px;
     height: 42px;
     background:#eee;
@@ -275,11 +274,11 @@ export default {
     text-align: center;
     font-size: 14px;
 }
-#BoosReg>.formInput .restDiv{
+#BoosLogin>.formInput .restDiv{
     position: relative;
     left:0;
 }
-#BoosReg>.formInput .restDiv .slideDiv{
+#BoosLogin>.formInput .restDiv .slideDiv{
     position: absolute;
     border:1px solid #ddd;
     background: #fff;
@@ -291,12 +290,12 @@ export default {
     line-height: 39px;
     z-index: 1;
 }
-#BoosReg>.formInput .restDiv .slideDiv img{
+#BoosLogin>.formInput .restDiv .slideDiv img{
     display: inline;
     position: relative;
     top:5px;
 }
-#BoosReg>.formInput .restDiv .RestOkInput{
+#BoosLogin>.formInput .restDiv .RestOkInput{
     position: absolute;
      width: 346px;
     height: 42px;
@@ -312,10 +311,10 @@ export default {
     z-index: 10;
 }
 
-#BoosReg>.formInput>.upwdDiv{
+#BoosLogin>.formInput>.upwdDiv{
     position: relative;
 }
-#BoosReg>.formInput>.upwdDiv>img{
+#BoosLogin>.formInput>.upwdDiv>img{
     position: absolute;
     width: 20px;
     height: 23px;
@@ -323,7 +322,7 @@ export default {
     left: 15px;
     z-index: 1;
 }
-#BoosReg>.formInput>.upwdDiv>.myPwdInput{
+#BoosLogin>.formInput>.upwdDiv>.myPwdInput{
     position: relative;
     width: 345px;
     height: 42px;
@@ -334,7 +333,7 @@ export default {
     margin-top: 30px;
     font-size: 14px;
 }
-#BoosReg>.formInput .regButton button{
+#BoosLogin>.formInput .regButton button{
     width: 345px;
     height: 42px;
     line-height: 42px;
@@ -345,7 +344,7 @@ export default {
     outline: none;
     margin-top:30px;
 }
-#BoosReg>.formInput .cbDiv{
+#BoosLogin>.formInput .cbDiv{
     margin-top:25px;
     width: 345px;
     height: 26px;
@@ -353,11 +352,11 @@ export default {
     font-size:15px;
     line-height: 26px;
 }
-#BoosReg>.formInput .cbDiv span{
+#BoosLogin>.formInput .cbDiv span{
     margin-right: 10px;
     margin-left:5px;
 }
-#BoosReg>.formInput .cbDiv .toLogin{
+#BoosLogin>.formInput .cbDiv .toLogin{
     text-decoration:none;
     color: #5dd5c8;
 }
