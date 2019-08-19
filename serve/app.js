@@ -1,8 +1,11 @@
 const express=require("express")
 const mysql=require("mysql")
 const cors=require("cors");
+const bodyParser=require("body-parser")
 const session=require("express-session");
 const pro=require("./routes/pro");
+const reg=require("./routes/reg");
+const login=require("./routes/login");
 var server=express();
 server.use(express.static("public"));
 server.listen(3000)
@@ -15,6 +18,9 @@ server.use(session({
     resave:true,
     saveUninitialized:true,
 }))
+server.use(bodyParser.urlencoded({extended:false}))
 server.use("/pro",pro);
+server.use("/reg",reg);
+server.use("/login",login);
 
 

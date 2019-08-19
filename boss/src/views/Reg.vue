@@ -72,6 +72,7 @@
 </template>
 <script>
 import SIdentify from './Identify.vue'
+import qs from 'qs'
 export default {
     data(){
         return{
@@ -115,11 +116,13 @@ export default {
         },
         //密码验证
         upwdTest(){
-            if(this.upwdVal==""){
+            
+             if(this.upwdVal==""){
                 this.$toast({
                     message:"请输入密码",
                     position:"bottom"
                     })
+                    return
             }else{
                 let reg=/^[0-9a-z]{6,16}$/i
                 if(reg.test(this.upwdVal)==false){
@@ -131,36 +134,85 @@ export default {
                 }
             }
         },
-        //验证码验证
       
 
     //注册按钮验证
     Reg(){
-            if(this.msgVal==""){
+        let reg=/^[0-9a-z]{6,16}$/i
+         let reg2=/^1[3-8]\d{9}$/;
+       if(this.upwdVal==""){
                 this.$toast({
-                    message:"请输入验证码",
+                    message:"请输入密码",
                     position:"bottom"
                     })
                     return
-            }else{
-                if(this.msgVal!=this.identifyCode){
+            }else if(reg.test(this.upwdVal)==false){
+                 this.$toast({
+                        message:"密码格式不正确",
+                        position:"bottom"
+                    })
+                    return
+            }else if(this.phoneVal==""){
+                this.$toast({
+                    message:"请输入手机号",
+                    position:"bottom"
+                })
+                return
+            }else if(reg2.test(this.phoneVal)==false){
+                    this.$toast({
+                        message:"手机号格式不正确",
+                        position:"bottom"
+                        })
+                        return
+                }else if(this.msgVal==""){
+            this.$toast({
+                message:"请输入验证码",
+                    position:"bottom"
+                    })
+                    return
+            }else if(this.msgVal!=this.identifyCode){
                 this.$toast({
                     message:"验证码不正确",
                     position:"bottom"
                 })
                 this.refreshCode();
                 return
-            };
-            }
-            if(this.myPosition.left!="297px"){
+            }else if(this.myPosition.left!="297px"){
                 this.$toast({
                     message:"请滑动通过验证",
                     position:"bottom"
                 })
                 return
-            };
+            }else{
             //发axios去查询手机号是否存在,如果存在提示已注册,如果不存在进行sql语句插入数据
-            
+            var url = "http://127.0.0.1:3000/reg"
+            let phone;
+            let upwd;
+            console.log(this.phoneVal,this.upwdVal)
+            var tmp =qs.stringify({
+                phone:this.phoneVal,
+                upwd:this.upwdVal
+            })
+            console.log(tmp)
+            this.axios.post(url,tmp).then(res=>{
+                if(res.data.code==-1){
+                    this.$toast({
+                        message:"号码已注册,请直接登录",
+                        position:"bottom"
+                    })
+                }else if(res.data.code==1){
+                     this.$toast({
+                        message:"注册成功,为您跳转到首页",
+                        position:"bottom",
+                        
+                    })
+                    let uid = res.data.data.id;
+                    console.log(uid)
+                    sessionStorage.setItem("uid",uid);
+                    this.$router.push('/pro')  
+                }
+            })
+            }
         },
         // touchstart
         tStart(e) {

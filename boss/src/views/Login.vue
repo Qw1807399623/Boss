@@ -83,22 +83,47 @@ export default {
                     position:"bottom"
                 })
                 return
-            }
-            if(this.phoneVal==""){
+            }else if(this.phoneVal==""){
                 this.$toast({
                     message:"手机号或密码不正确",
                     position:"bottom"
                 })
                 this.myPosition.left=0
                 return
-            }
-            if(this.upwdVal==""){
+            }else if(this.upwdVal==""){
                 this.$toast({
                     message:"手机号或密码不正确",
                     position:"bottom"
                 })
                 this.myPosition.left=0
                 return
+            }else{
+                var url = "http://127.0.0.1:3000/login"
+                var phone = this.phoneVal;
+                var upwd = this.upwdVal;
+                console.log(phone,upwd)
+                this.axios.get(url,{params:{
+                    phone,
+                    upwd}
+                }).then(res=>{
+                    console.log(res.data)
+                    if(res.data.code==-1){
+                        this.$toast({
+                    message:"手机号或密码不正确",
+                    position:"bottom"
+                    })
+                    return
+                    }else if(res.data.code==1){
+                        this.$toast({
+                    message:"登录成功",
+                    position:"bottom"
+                    })
+                    let uid = res.data.data.id;
+                    console.log(uid)
+                    sessionStorage.setItem("uid",uid);
+                    this.$router.push("/pro")
+                    }
+                })
             }
 
             //发送axios请求去数据库进行查询,如果手机号值与密码相匹配则登录成功跳转到

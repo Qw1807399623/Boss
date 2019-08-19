@@ -24,7 +24,7 @@ CREATE TABLE boss_pro(
     /*融资*/
     financing VARCHAR(128),
     /*图片路径*/
-    jpg varchar(128)
+    jpg VARCHAR(128)
 );
 INSERT INTO boss_pro VALUES
 (NULL,"健客网","web前端","广州","3-5年","本科",10,13,50,"A轮","jianke.jpg"),
@@ -36,6 +36,12 @@ INSERT INTO boss_pro VALUES
 (NULL,"南瑞信通","web前端","广州","3-5年","大专",17,19,40,"已上市","nanrui.jpg"),
 (NULL,"图匠数据","web前端","广州","3-5年","本科",15,20,150,"不需要融资","tujiang.jpg");
 
+/*********注册表*************/
+CREATE TABLE boss_reg(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    phone VARCHAR(15),
+    upwd VARCHAR(32)
+);
 
-
-
+/***********测试*********/
+INSERT INTO boss_reg VALUES(NULL,13178599893,"123456");
