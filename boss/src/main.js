@@ -6,7 +6,10 @@ import axios from 'axios'
 //mint-ui
 import MintUi from "mint-ui";
 Vue.prototype.axios=axios;
+import MintUi from "mint-ui"
+import "mint-ui/lib/style.css"
 Vue.use(MintUi)
+
 Vue.config.productionTip = false
 
 new Vue({

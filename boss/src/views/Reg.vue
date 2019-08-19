@@ -6,7 +6,7 @@
             </div>
             <div class="formInput">
                 <img src="../../public/img/Regphone.png" class="Regphone"/>
-                <input class="myUnameInput" type="text" placeholder="手机号" name="phone"/>
+                <input @blur="phoneTest" v-model="phoneVal" class="myUnameInput" type="text" placeholder="手机号" name="phone"/>
                 <div class="Downpull">
                     <label @click="ChangeShow">
                         <span>{{val}}</span>
@@ -40,27 +40,28 @@
                 </div>
                 <div class="restDiv">
                     <input class="myRestInput" disabled placeholder="请向右滑动验证"/>
-                    <div class="slideDiv">
+                    <div class="slideDiv" :style="myPosition" @touchstart="tStart($event)" @touchmove="tMove($event)" @touchend="tEnd">
                         <img src="../../public/img/slide.png" />
                     </div>
+                    <input type="text" v-show="myPosition.left==297+'px'" disabled class="RestOkInput" placeholder="验证成功">
                 </div>
                 <div class="upwdDiv">
                     <img src="../../public/img/Regpasswork.png"/>
-                    <input type="passwork" name="upwd" class="myPwdInput" placeholder="请输入密码"/>
+                    <input @blur="upwdTest" v-model="upwdVal" type="password" name="upwd" class="myPwdInput" placeholder="请输入密码(6~16位的数字或字母)"/>
                 </div>
                 <div class="msgDiv">
                     <img src="../../public/img/test.png"/>
-                    <input type="text" class="msgInput" name="message" maxlength="6" placeholder="请输入验证码"/>
+                    <input v-model="msgVal" type="text" class="msgInput" name="message" maxlength="6" placeholder="请输入验证码"/>
                     <div @click=" refreshCode">
                         <s-identify :identifyCode="identifyCode" id="restVal"></s-identify>
                     </div>
                 </div>
                 <div class="regButton">
-                    <button>注册</button>
+                    <button :class="{'RegDisableBg':!myCb}" :disabled="!myCb" @click="Reg">注册</button>
                 </div>
                 <div class="cbDiv">
                     <label>
-                        <input type="checkbox" class="cbInput">
+                        <input v-model="myCb" type="checkbox" class="cbInput">
                         <span>我已同意用户协议及隐私政策</span>
                     </label>
                     <router-link to="Login" class="toLogin">直接登录</router-link>
@@ -78,17 +79,143 @@ export default {
             show:undefined,
             myimgs:true,
             identifyCodes: "1234567890",
-            identifyCode: ""
+            identifyCode: "",
+            myPosition:{left:0},
+            tData:{start:0,end:0},//touch产生的参数
+            phoneVal:"",
+            upwdVal:"",
+            msgVal:"",
+            myCb:false
         }
     },
     components:{
         "s-identify":SIdentify
     },
     methods:{
+        
+        //手机号验证
+        phoneTest(){
+            if(this.phoneVal==""){
+                this.$toast({
+                    message:"请输入手机号",
+                    position:"bottom"
+                })
+                return
+            }else{
+                let reg=/^1[3-8]\d{9}$/;
+                if(reg.test(this.phoneVal)==false){
+                    this.$toast({
+                        message:"手机号格式不正确",
+                        position:"bottom"
+                        })
+                        return
+                }
+
+            }
+        },
+        //密码验证
+        upwdTest(){
+            if(this.upwdVal==""){
+                this.$toast({
+                    message:"请输入密码",
+                    position:"bottom"
+                    })
+            }else{
+                let reg=/^[0-9a-z]{6,16}$/i
+                if(reg.test(this.upwdVal)==false){
+                    this.$toast({
+                        message:"密码格式不正确",
+                        position:"bottom"
+                    })
+                    return
+                }
+            }
+        },
+        //验证码验证
+      
+
+    //注册按钮验证
+    Reg(){
+            if(this.msgVal==""){
+                this.$toast({
+                    message:"请输入验证码",
+                    position:"bottom"
+                    })
+                    return
+            }else{
+                if(this.msgVal!=this.identifyCode){
+                this.$toast({
+                    message:"验证码不正确",
+                    position:"bottom"
+                })
+                this.refreshCode();
+                return
+            };
+            }
+            if(this.myPosition.left!="297px"){
+                this.$toast({
+                    message:"请滑动通过验证",
+                    position:"bottom"
+                })
+                return
+            };
+            //发axios去查询手机号是否存在,如果存在提示已注册,如果不存在进行sql语句插入数据
+            
+        },
+        // touchstart
+        tStart(e) {
+            let tData = this.tData;
+            tData.start = e.touches[0].pageX;
+            // console.log(this.tData.start)
+        },
+        // touchmove
+        tMove(e) {
+            let tData = this.tData;
+            tData.end = e.touches[0].pageX;
+            // console.log(this.tData.end)
+            let myPosition = this.myPosition;
+            let left = tData.end-tData.start + 'px';
+            myPosition.left = left;
+            console.log(myPosition.left)
+            if(tData.end-tData.start<0){
+                myPosition.left=0+"px"
+                return
+            }
+            if(tData.end-tData.start>300){
+                myPosition.left=297+"px" 
+                // return
+            }
+            // if(myPosition.left>"295px"){
+            //     myPosition.left="295px"
+            // }
+        },
+        // touchend
+        tEnd(){
+            let tData = this.tData;
+            if(this.myPosition.left<"295px"){
+                this.myPosition.left=0
+            }
+            // let myPosition = this.myPosition;
+            // let left = tData.end-tData.start + 'px';
+            // myPosition.left = left;
+        },
+        
+        // slideToTest(e){
+        //       let offsetX=e.offsetX
+        //       console.log(offsetX)
+        //      let left = e.clientX - offsetX;
+        //     console.log(left);  
+                   
+        //             this.myPosition.left=left+"px"
+                 
+        //     },
+            
+     
         ChangeVal(e){
             if(e.target.dataset.canclick){
             this.val=e.target.dataset.val
             console.log(e.target.dataset.val);
+            this.show=undefined;
             }
         },
         ChangeShow(){
@@ -107,12 +234,15 @@ export default {
          refreshCode(){
             this.identifyCode="";
             this.makeCode(this.identifyCodes,4)
+            
         },
         makeCode(o,l){
             for(let i = 0;i<l;i++){
                 this.identifyCode+=this.identifyCodes[this.ramdomNum(0,this.identifyCodes.length)]
             }
-        }
+        },
+
+        
     },
     mounted() {
         this.identifyCode="";
@@ -226,6 +356,7 @@ export default {
 }
 #BoosReg>.formInput .restDiv{
     position: relative;
+    left:0;
 }
 #BoosReg>.formInput .restDiv .slideDiv{
     position: absolute;
@@ -234,6 +365,7 @@ export default {
     width: 48px;
     height: 40px;
     top:30px;
+    /* left:10px; */
     text-align: center;
     line-height: 39px;
     z-index: 1;
@@ -243,6 +375,22 @@ export default {
     position: relative;
     top:5px;
 }
+#BoosReg>.formInput .restDiv .RestOkInput{
+    position: absolute;
+     width: 346px;
+    height: 42px;
+    background:rgb(23, 207, 106);
+    border:1px solid #ddd;
+    padding: 0;
+    color: #000;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    top:30px;
+    left: 0;
+    z-index: 10;
+}
+
 #BoosReg>.formInput>.upwdDiv{
     position: relative;
 }
@@ -340,5 +488,8 @@ export default {
     top:32px;
     right:-10px;
     z-index: 5;
+}
+#BoosReg>.formInput .regButton button.RegDisableBg{
+    background: #ddd;
 }
 </style>
