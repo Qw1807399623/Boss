@@ -11,7 +11,9 @@ import filtrate from "../components/boss/filtrate";
 import Mycontent from "./content";
 export default {
     data(){
-        return{}
+        return{
+            show:false
+        }
     },
     components: {
         "seek":seek,
