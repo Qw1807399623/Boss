@@ -210,6 +210,7 @@ export default {
                     console.log(uid)
                     sessionStorage.setItem("uid",uid);
                     this.$router.push('/pro')  
+                
                 }
             })
             }

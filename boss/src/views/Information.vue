@@ -5,9 +5,9 @@
                 <img class="find" src="../../public/img/information_find.png" />
                 <img class="set" src="../../public/img/information_set.png" />
             </div>
-            <div class="personal">
+            <div class="personal" v-show="isLogin!=null">
                 <div class="nameMsg">
-                    <span :class="{'moveUname':isMove}">用户名</span>
+                    <span :class="{'moveUname':isMove}">用户:{{pname}}</span>
                     <div class="msgOnline">
                         <img width="15px" height="15px" src="../../public/img/information_write.png" alt="">
                         <p>
@@ -16,9 +16,10 @@
                     </div>
                 </div>
                 <div class="ImageMsg">
+                    <!-- <onload-img></onload-img> -->
                 </div>
             </div>
-            <div class="communication">
+            <div class="communication" v-show="isLogin!=null">
                <ul>
                    <li><span>0</span><p>沟通过</p></li>
                    <li><span>0</span><p>待面试</p></li>
@@ -26,7 +27,13 @@
                    <li><span>0</span><p>收藏</p></li>  
                </ul> 
             </div>
+            <div class="myLogin" v-show="isLogin==null">
+                <router-link to="/Login">登录</router-link>
+                <span style="margin:0 10px;position:relative;bottom:2px">|</span>
+                <router-link to="/Reg">注册</router-link>
+            </div>
             <div id="myBody">
+                <router-link to="/Upgrade">
                 <div class="choose">
                     <div class="dis-inline">
                         <img width="20px" height="20px" src="../../public/img/information_file.png" alt="">
@@ -36,6 +43,8 @@
                         <img class="right_m" width="15px" height="15px" src="../../public/img/indormation_right.png" alt="">
                     </span>
                 </div>
+                </router-link>
+                 <router-link to="/Upgrade">
                 <div class="choose">
                     <div class="dis-inline">
                         <img width="20px" height="20px" src="../../public/img/information_add.png" alt="">
@@ -48,6 +57,8 @@
                 <div class="myHr">
                     <hr>
                 </div>
+                </router-link>
+                 <router-link to="/Upgrade">
                 <div class="choose">
                     <div class="dis-inline">
                         <img width="20px" height="20px" src="../../public/img/information_home.png" alt="">
@@ -57,6 +68,8 @@
                         <img class="right_m" width="15px" height="15px" src="../../public/img/indormation_right.png" alt="">
                     </span>
                 </div>
+                </router-link>
+                 <router-link to="/Upgrade">
                 <div class="choose">
                     <div class="dis-inline">
                         <img width="20px" height="20px" src="../../public/img/information_msg.png" alt="">
@@ -66,6 +79,8 @@
                         <img class="right_m" width="15px" height="15px" src="../../public/img/indormation_right.png" alt="">
                     </span>
                 </div>
+                 </router-link>
+                 <router-link to="/Upgrade">
                 <div class="choose">
                     <div class="dis-inline">
                         <img width="20px" height="20px" src="../../public/img/information_attention.png" alt="">
@@ -78,6 +93,8 @@
                 <div class="myHr">
                     <hr>
                 </div>
+                </router-link>
+                  <router-link to="/Upgrade">
                 <div class="choose">
                     <div class="dis-inline">
                         <img width="20px" height="20px" src="../../public/img/information_resume.png" alt="">
@@ -87,6 +104,8 @@
                         <img class="right_m" width="15px" height="15px" src="../../public/img/indormation_right.png" alt="">
                     </span>
                 </div>
+                </router-link>
+                <router-link to="/Upgrade">
                 <div class="choose">
                     <div class="dis-inline">
                         <img width="20px" height="20px" src="../../public/img/information_wallet.png" alt="">
@@ -99,6 +118,8 @@
                 <div class="myHr">
                     <hr>
                 </div>
+                </router-link>
+                 <router-link to="/Upgrade">
                 <div class="choose">
                     <div class="dis-inline">
                         <img width="20px" height="20px" src="../../public/img/information_feedback.png" alt="">
@@ -111,8 +132,9 @@
                 <div class="myHr m-b">
                     <hr>
                 </div>
+                </router-link>
                 <div>
-                    <button id="quitLogin">退出登录</button>
+                    <button id="quitLogin" @click="quitLogin" v-show="uid!=null">退出登录</button>
                 </div>
                 <div class="myFooter">
                     <div>
@@ -134,13 +156,20 @@
     </div>
 </template>
 <script>
+// import Onloadimg from './Onloadimg'
 export default {
     data(){
         return{
             tData:{start:0,end:0},
             isMove:false,
+            uid:null,
+            isLogin:null,
+            pname:""
         }
     },
+    // components:{
+    //     "onload-img":Onloadimg
+    // },
     methods:{
         tStart(e){
             // console.log("滑动开始");
@@ -166,15 +195,41 @@ export default {
             }
             // console.log(tData.end)
         },
+        getUid(){
+            var uid= sessionStorage.getItem("uid");
+            this.uid=uid
+            if(uid!=null){
+            this.isLogin=true
+            }
+            console.log(uid)
+        },
+        quitLogin(){
+            this.uid=null;
+            this.isLogin=null
+        },
+        getPim(){
+            var uid = sessionStorage.getItem("uid")
+            if(uid!=null){
+                this.axios.get("http://127.0.0.1:3000/selectpim",{params:{
+                    uid
+                }}).then(res=>{
+                    console.log(res)
+                    this.pname=res.data[0].phone
+                })
+            }
+        }
+    },
+    created(){
+        this.getUid()
+        this.getPim()
     }
 }
 </script>
 <style scoped>
 .moveUname{
     position: fixed;
-    transform: translate(-15px,-50px) scale(0.6);
+    transform: translate(-40px,-50px) scale(0.6);
     transition: all .2s linear;
-
 }
 .myHr{
     padding: 0 20PX;
@@ -312,5 +367,24 @@ export default {
 }
 #myBody .myFooter span{
     margin:0 5px;
+}
+#contain .myLogin{
+    position: relative;
+    z-index: 1;
+    line-height: 190px;
+    width: 100%;
+    height: 190px;
+    color:#fff;
+    font-size: 30px;
+    background: #53beb7;
+    z-index: 1;
+}
+#contain .myLogin a{
+    color: #fff;
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+    color:#aaa;
 }
 </style>

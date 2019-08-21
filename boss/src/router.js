@@ -6,6 +6,7 @@ import Reg from './views/Reg.vue'
 import Details from './views/Details.vue'
 import Profession from './views/profession.vue'
 import Information from './views/Information.vue'
+import Upgrade from './views/Upgrade.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,7 @@ export default new Router({
     {path:"/Login",component:Login},
     {path:"/Pro",component:Profession},
     {path:"/Reg",component:Reg},
+    {path:"/Upgrade",component:Upgrade},
     {path: '/',name: 'home',component: Home},
   ]
 })
