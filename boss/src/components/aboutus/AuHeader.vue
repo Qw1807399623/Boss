@@ -1,6 +1,8 @@
 <template>
 	<div class="auheader">
-		<div class="au_h_lf"><img src="../../assets/zuojiankuohao.png" alt=""></div>
+		<div class="au_h_lf">
+			<router-link :to='`/companylist`'><img src="../../assets/zuojiankuohao.png" alt=""></router-link>
+			<span v-show="y>111">腾讯</span></div>
 		<div class="au_h_rg">
 			<div class="concern" v-show="!isconcern"  @click="attin">+ 关注</div>
 			<div class="concern" v-show="isconcern"  @click="attout">已关注</div>
@@ -18,7 +20,8 @@
 			return{
 				i:0,
 				isconcern:false,
-				isreport:true
+				isreport:true,
+				y:0
 			}
 		},
 		methods:{
@@ -36,22 +39,30 @@
 					position:'bottom'
 				})
 			}
-		}
+		},
+      mounted(){
+		  window.onscroll = ()=>{
+			  var y=window.scrollY;
+			  this.y=y;
+		  }
+      }
 	}
 </script>
 
 <style scoped>
 	 .auheader {
-		   padding: 0.5rem 0.75rem;
-		   font-size: 12px;
-		   background: #222;
-		   color: #fff; 
-		 position: fixed;
-		 width: 94%;
-		 background-color: #222;
-	  display: flex;
-	  justify-content: space-between;
-	  align-items: center; }
+		z-index: 2;
+		padding: 0.5rem 0.75rem;
+		font-size: 1.25rem;
+		color: #fff; 
+		position: fixed;
+		box-sizing: border-box;
+		top: 0px;
+		width: 100%;
+		background-color: rgba(0,0,0,0.9);
+		display: flex;
+		justify-content: space-between;
+		align-items: center; }
 	   .auheader .au_h_rg {
 	    display: flex;
 	    justify-content: space-between;

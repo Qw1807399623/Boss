@@ -97,7 +97,6 @@
 	/* 当前组件专有样式内容 */
 	
 	 .au_detail {
-		 margin-top: 2rem;
 	  display: flex;
 	  justify-content: space-between;
 	  align-items: center;
@@ -114,7 +113,7 @@
 	      align-items: center;
 	      font-size: 1.7rem; }
 	     .au_detail .au_title .au_dt_lf .au_dt_stit {
-					padding-top: 5px;
+			padding-top: 5px;
 	      font-size: 0.75em;
 	      color: #aaaaaa; }
 			.au_dt_rg img{
@@ -127,7 +126,7 @@
 	    width: 100%;
 	    margin: 10px 0; }
 	     .au_detail .au_boon .au_b_lf > div {
-					margin-bottom: 5px;
+			margin-bottom: 5px;
 	      display: flex;
 	      justify-content: space-between;
 	      align-items: center; }
@@ -139,6 +138,9 @@
 	     .au_detail .au_boon1{
 			  width: 361px;
 			  overflow:auto;
+		  }
+	     .au_detail .au_boon1::-webkit-scrollbar{
+			  display: none;
 		  }
 	     .au_detail .au_boon1 .border{
 				border-radius: 0.5rem;
