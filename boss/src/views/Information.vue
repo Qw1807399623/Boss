@@ -153,6 +153,7 @@
                 </div>
             </div>
         </div>
+        <tabBar></tabBar>
     </div>
 </template>
 <script>
@@ -359,7 +360,7 @@ export default {
     margin-right: 20px;
 }
 #myBody .myFooter{
-    margin-bottom:30px;
+    margin-bottom:80px;
     font-size: 12px;
 }
 #myBody .myFooter div{
