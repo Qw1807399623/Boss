@@ -8,7 +8,7 @@
                 <in-profession></in-profession>
             </mt-tab-container-item>
             <mt-tab-container-item id="tab3">
-                <in-details></in-details>
+                <company-list></company-list>
             </mt-tab-container-item>
             <mt-tab-container-item id="tab4">
                 <in-formation></in-formation>
@@ -19,7 +19,7 @@
 </template>
 <script>
 import Index from './Index'
-import Details from './content'
+import CompanyList from './companylist'
 import Profession from './profession'
 import Information from './Information'
 export default {
@@ -31,7 +31,7 @@ export default {
     components:{
         "in-dex":Index,
         "in-profession":Profession,
-        "in-details":Details,
+        "company-list":CompanyList,
         "in-formation":Information
     }
 }
