@@ -26,6 +26,9 @@ export default {
 }
 </script>    
 <style scoped>
+    Mycontent{
+        margin-bottom:80px;
+    }
     .none{
         position:fixed;
         top:180px;
