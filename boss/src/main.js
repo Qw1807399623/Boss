@@ -8,14 +8,10 @@ import { Overlay } from 'vant';
 
 Vue.use(Overlay);
 //mint-ui
-<<<<<<< HEAD
 import { Button } from 'vant'
 Vue.use(Button);
 import MintUi from "mint-ui"
-=======
-import MintUi from "mint-ui";
 import 'mint-ui/lib/style.css'
->>>>>>> 97995330dfa184b7cc7f6345c421770b9934118f
 Vue.prototype.axios=axios;
 import "mint-ui/lib/style.css"
 Vue.use(MintUi)

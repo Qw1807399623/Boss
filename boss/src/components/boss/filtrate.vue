@@ -33,15 +33,15 @@
                 薪资
                 <img src="../../../public/img/dowm.png" :class="{'bottom':true,'rotate':isShow[2].isDowm}">
                 <ul :class="{'my_ul':true,'show':isShow[2].isDowm}" @touchmove.prevent   @click="search_sa">
-                    <li data-canclick="true" data-code="0">不限</li>
-                    <li data-canclick="true" data-code="1">3-5K以下</li>
-                    <li data-canclick="true" data-code="2">3-5K</li>
-                    <li data-canclick="true" data-code="3">5-10K</li>
-                    <li data-canclick="true" data-code="4">10-15K</li>
-                    <li data-canclick="true" data-code="5">15-20K</li>
-                    <li data-canclick="true" data-code="6">20-30K</li>
-                    <li data-canclick="true" data-code="7">30-50K</li>
-                    <li data-canclick="true" data-code="8">50K以上</li>
+                    <li data-canclick="true">不限</li>
+                    <li data-canclick="true">3-5K以下</li>
+                    <li data-canclick="true">3-5K</li>
+                    <li data-canclick="true">5-10K</li>
+                    <li data-canclick="true">10-15K</li>
+                    <li data-canclick="true">15-20K</li>
+                    <li data-canclick="true">20-30K</li>
+                    <li data-canclick="true">30-50K</li>
+                    <li data-canclick="true">50K以上</li>
                 </ul>
             </div>
             <div @click="show(3)">
@@ -126,17 +126,24 @@ export default {
         },
         /* 工资 */
         search_sa(e){
-            console.log(e.target.innerHTML)
+            // // console.log(e.target.dataset.code)
+            // this.arr=e.target.dataset.code;
+            // if(this.arr=="不限"){this.arr=""};
+            //     this.axios.get('http://127.0.0.1:3000/search2',{params:{code:this.arr}})
+            //     .then(result=>{
+            //         this.arr=result.data;
+            //         Bus.$emit('val',this.arr)
+            //     })
         },
         /* 规模 */
         search_ma(e){
-            this.arr=e.target.innerHTML;
-            if(this.arr=="不限"){this.arr=""};
-                this.axios.get('http://127.0.0.1:3000/search2',{params:{msg:this.arr}})
-                .then(result=>{
-                    this.arr=result.data;
-                    Bus.$emit('val',this.arr)
-                })
+            // this.arr=e.target.innerHTML;
+            // if(this.arr=="不限"){this.arr=""};
+            //     this.axios.get('http://127.0.0.1:3000/search2',{params:{msg:this.arr}})
+            //     .then(result=>{
+            //         this.arr=result.data;
+            //         Bus.$emit('val',this.arr)
+            //     })
         },
         /* 融资 */
         search_fi(e){
