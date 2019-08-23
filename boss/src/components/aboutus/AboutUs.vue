@@ -2,7 +2,7 @@
 <template>
 	<!-- 模板要求：必须有一个根标签 -->
 	<div class="aboutUs">
-		<div class="au_title">公司介绍</div>
+		<div class="au_title" @click="suibi">公司介绍</div>
 		<div class="au_text">
 			<p>深圳市腾讯计算机系统有限公司成立于1998年11月，由马化腾、张志东、许晨晔、陈一丹、曾李青五位创始人共同创立。是中国最大的互联网综合服务提供商之一，也是中国服务用户最多的互联网企业之一。</p>
 			<p>腾讯多元化的服务包括：社交和通信服务QQ及微信/WeChat、社交网络平台QQ空间、腾讯游戏旗下QQ游戏平台、门户网站腾讯网、腾讯新闻客户端和网络视频服务腾讯视频等。</p>
@@ -19,6 +19,12 @@
 			return{
 			//默认返回空对象（没数据）
 				
+			}
+		},
+		props:['aboutus'],
+		methods:{
+			suibi(){
+				console.log(this.aboutus);
 			}
 		}
 	}

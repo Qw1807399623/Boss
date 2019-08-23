@@ -6,6 +6,7 @@ const session=require("express-session");
 const pro=require("./routes/pro");
 const reg=require("./routes/reg");
 const login=require("./routes/login");
+const company=require('./routes/company');
 var server=express();
 server.use(express.static("public"));
 server.listen(3000)
@@ -22,5 +23,6 @@ server.use(bodyParser.urlencoded({extended:false}))
 server.use("/pro",pro);
 server.use("/reg",reg);
 server.use("/login",login);
+server.use('/company',company);
 
 

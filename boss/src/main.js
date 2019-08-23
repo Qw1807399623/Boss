@@ -6,6 +6,9 @@ import axios from 'axios'
 //mint-ui
 import MintUi from "mint-ui";
 import 'mint-ui/lib/style.css'
+
+axios.defaults.baseURL='http://127.0.0.1:3000/'
+
 Vue.prototype.axios=axios;
 import "mint-ui/lib/style.css"
 Vue.use(MintUi)

@@ -2,8 +2,8 @@
 <template>
 	<!-- 模板要求：必须有一个根标签 -->
 	<div class="emm">
-		<auheader/>
-		<div class="bg"></div>
+		<auheader :aboutus='aboutus'/>
+		<div class="bg" ></div>
 		<div class="detail-mask"></div>
 		<div class="contanier">
 			<div class="bor">
@@ -29,13 +29,26 @@
 	import CpUccn from '../components/aboutus/CpUccn'
 	import CpBI from '../components/aboutus/CpBI'
 	import myfooter from '../components/aboutus/myfooter'
+	
 	export default {
 		data(){
 			//当前组件共享数据，模块直接读取
 			return{
 			//默认返回空对象（没数据）
-				
+				aboutus:''
 			}
+		},
+		methods:{
+			loadMore(){
+				var url='company';
+				this.axios.get(url).then(res=>{
+					this.aboutus=res.data[0].aboutus;
+					console.log(this.aboutus);
+				})
+			}
+		},
+		created(){
+			this.loadMore();
 		},
 		components:{
 			'auheader':AuHeader,
