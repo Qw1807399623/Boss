@@ -25,6 +25,7 @@ server.use(bodyParser.urlencoded({extended:false}))
 server.use("/pro",router);
 server.use("/reg",reg);
 server.use("/login",login);
+server.use("/selectpim",selectpim)
 server.use('/search',search);
 server.use('/search2',search2)
 
