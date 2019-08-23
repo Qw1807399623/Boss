@@ -55,7 +55,7 @@ CREATE TABLE boss_details(
     position VARCHAR(128),
     /*地点*/
     city VARCHAR(128),
-    /*工作经验*/
+    /*工作经验*/ 
     age VARCHAR(128),
     /*学历*/
     education VARCHAR(128),
