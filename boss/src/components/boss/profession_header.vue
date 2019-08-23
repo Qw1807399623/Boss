@@ -7,7 +7,7 @@
                     <span>{{isCity}}</span>
                     <img src="../../../public/img/dowm.png" id="dowm2" :class="{'rotate':isrotate}">
                 </div>
-                <input type="text" placeholder="搜索职位">
+                <input type="text" placeholder="搜索职位" v-model="kwords">
             </div>
             <div class="seek"  @click="search">搜索</div>
         </div>
@@ -42,10 +42,16 @@
                     <li data-canclick="true">武汉</li>
                 </ul>
             </div>
-        </div> 
+        </div>
+        <van-overlay
+        @touchmove.prevent
+        class="p"
+        :show="isShow"
+        />
     </div>
 </template>
 <script>
+import Bus from '../../assets/bus.js'
 export default {
     data () {
         return {
@@ -54,11 +60,17 @@ export default {
             isrotate:false,
             isCity:"广州",
             kwords:"",
+            arr:[]
         }
     },
     methods:{
         search(){
-                console.log(this.kwords)
+              this.axios.get('http://127.0.0.1:3000/search',{params:{msg:this.kwords}})
+                .then(result=>{
+                    this.arr=result.data;
+                    // console.log(result.data);
+                    Bus.$emit('val',this.arr)
+                })
         },
         city(e){
             if(e.target.dataset.canclick){
@@ -66,7 +78,12 @@ export default {
                 this.isShow = false;
                 setTimeout(()=>{
                     this.isNone = false;
-                },400)
+                },400);
+                this.axios.get('http://127.0.0.1:3000/search',{params:{msg:this.isCity}})
+                .then(result=>{
+                    this.arr=result.data;
+                    Bus.$emit('val',this.arr)
+                })
             }
         },
         handleShow(e) {
@@ -99,11 +116,6 @@ export default {
             }
         }
     },
-    watch: {
-        kwords(){
-            this.search()
-        }
-    }
 }
 </script>
 <style scoped>
