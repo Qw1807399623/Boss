@@ -5,10 +5,16 @@ import store from './store'
 import axios from 'axios'
 import Tabbar from './views/Tabbar'
 Vue.component("tabBar",Tabbar)
+import 'vant/lib/button/style'
+import { Overlay } from 'vant';
+
+Vue.use(Overlay);
 //mint-ui
-import MintUi from "mint-ui";
+import { Button } from 'vant'
+Vue.use(Button);
+import MintUi from "mint-ui"
+import 'mint-ui/lib/style.css'
 Vue.prototype.axios=axios;
-import "mint-ui/lib/style.css"
 Vue.use(MintUi)
 //element-ui
 import ElementUI from 'element-ui';

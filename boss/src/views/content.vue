@@ -23,33 +23,51 @@
     </div>
 </template>
 <script>
+import Bus from '../assets/bus.js'
 export default {
     data(){
         return{
-            p1:{},
-            p2:{},
-            p3:{},
-            arr:[]
+            arr:[],
+        }
+    },
+    mounted: function () {
+      var vm = this
+      // 用$on事件来接收参数
+      Bus.$on('val', (data) => {
+        console.log(data)
+        vm.arr = data
+      })
+    },
+    methods: {
+        getData: function () {
+        console.log(this.name)
+        },
+        search(){
+              this.axios.get('http://127.0.0.1:3000/search')
+                .then(result=>{
+                    this.arr=result.data;
+                    // console.log(this.arr);
+                })
+        },
+        load(){
+            this.axios.get(
+            "http://127.0.0.1:3000/pro"
+        ).then(result=>{
+            this.arr=result.data;
+            // console.log(this.arr);
+        })
         }
     },
     created(){
-        this.axios.get(
-            "http://127.0.0.1:3000/pro"
-        ).then(result=>{
-            var [p1,p2,p3]=result.data;
-            this.p1=p1
-            this.p2=p2
-            this.p3=p3
-            this.arr=result.data;
-            console.log(this.arr);
-        })
-    }
+        this.load()
+    },
 }
 </script>
 <style scoped> 
     .relative{
         position: relative;
         display: flex;
+        background:#ffffff;
         border-bottom:solid 1px #dddddd;
     }
     .content-box{
