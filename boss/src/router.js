@@ -7,11 +7,15 @@ import Details from './views/Details.vue'
 import Profession from './views/profession.vue'
 import Information from './views/Information.vue'
 import Upgrade from './views/Upgrade.vue'
+import Index from './views/Index.vue'
+import Boss from './views/Boss.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {path:"/Boss",component:Boss},
+    {path:"/Index",component:Index},
     {path:"/Details",component:Details},
     {path:"/Information",component:Information},
     {path:"/Login",component:Login},
