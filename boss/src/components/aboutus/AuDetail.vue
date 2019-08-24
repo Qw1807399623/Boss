@@ -116,6 +116,7 @@
 	      align-items: center;
 	      font-size: 1.7rem; }
 	     .au_detail .au_title .au_dt_lf .au_dt_stit {
+			  text-align: left;
 			padding-top: 5px;
 	      font-size: 0.75em;
 	      color: #aaaaaa; }

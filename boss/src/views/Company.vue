@@ -35,17 +35,6 @@
 			//当前组件共享数据，模块直接读取
 			return{
 			//默认返回空对象（没数据）
-				aboutus:'',
-				cboss:'',
-				city:'',
-				cname:'',
-				compall:'',
-				financing:'',
-				lmonry:'',
-				logintiem:'',
-				many:'',
-				tmt:'',
-				uccn:'',
 				list:[]
 			}
 		},
