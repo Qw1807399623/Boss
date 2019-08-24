@@ -9,17 +9,17 @@
     </div>
     <div class="title">
       <table></table>
-      <h2>云平台架构师</h2>
-      <span class="sal"></span>
+      <h2>{{arr.position}}</h2>
+      <span class="sal">{{arr.sal}}k</span>
       <div class="condition">
-        <i>上海</i>
+        <i>{{arr.city}}</i>
         <span>|</span>
-        <i>5-10年</i>
+        <i>{{arr.age}}}</i>
         <span>|</span>
-        <i>本科</i>
+        <i>{{arr.education}}</i>
       </div>
       <div class="label">
-        <p>云</p>
+        <p>{{arr.skill}}</p>
       </div>
       <div class="turnover">更新于:2019-08-19</div>
     </div>
@@ -33,7 +33,7 @@
         <img src="../../public/img_Aaron/link-like.png" alt />
         <span>感兴趣</span>
       </div>
-      <p>携程旅游网</p>
+      <p>{{arr.website}}</p>
       <button class="btn">立即沟通</button>
     </div>
     <div>
@@ -114,19 +114,21 @@
     </div>
     <div>
       <h1>相似职位</h1>
-      <h3></h3>
-      <div class="recommend">
-        <img src="../../public/img_Aaron/corporation.jpg" alt />
+     <div v-for="(item,i) of list" :key="i"> 
+       <h3></h3>
+        <div class="recommend">
+          <img :src="`http://127.0.0.1:3000/img/${item.jpg}`" />
+        </div>
+        <h2>{{item.position}}</h2>
+        <a href="javascript:;">
+          {{item.pname}}
+          <span>|</span>
+          <span>{{item.city}}</span>
+        </a>
+        <p class="pay">{{item.minsal}}-{{item.maxsal}}K</p>
+        <button>立即沟通</button>
+        <h3 class="bottomh3"></h3>
       </div>
-      <h2>web前端</h2>
-      <a href="javascript:;">
-        健客网
-        <span>|</span>
-        <span>广州</span>
-      </a>
-      <p class="pay">10-13k</p>
-      <button>立即沟通</button>
-      <h3 class="bottomh3"></h3>
     </div>
   </div>
 </template>
@@ -134,15 +136,23 @@
 export default {
   data() {
     return {
-      arr: []
+      arr: {},
+      list:[]
     };
   },
   methods: {
     loadMore() {
       var url = "deta";
       this.axios.get(url).then(result => {
-        console.log(result);
+        // console.log(result);
+        this.arr=result.data[0];
+        console.log(this.arr)
       });
+
+      this.axios.get("bossPro").then(result=>{
+        console.log(result);
+        this.list=result.data.data;
+      })
     }
   },
   created() {

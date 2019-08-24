@@ -28,6 +28,30 @@ server.use("/reg",reg);
 server.use("/login",login);
 server .use("/deta",deta);
 server.use('/search',search);
-server.use('/search2',search2)
+server.use('/search2',search2);
+
+var pool = mysql.createPool({
+    host: '127.0.0.1',
+    port: 3306,
+    user: 'root',
+    password: '',
+    database: 'boss',
+    connectionLimit: 15,
+});
+
+server.get('/bossPro',function(req,res){
+    var sql="SELECT pid,pname,position,city,age,education,minsal,maxsal,many,financing,jpg FROM boss_pro";
+    pool.query(sql,(err,result)=>{
+        if(err){
+            throw err;
+        }
+        res.send({
+            code:1,
+            msg:"查询成功",
+            data:result
+        })
+    })
+})
+
 
 
