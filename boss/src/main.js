@@ -18,12 +18,17 @@ import 'mint-ui/lib/style.css'
 axios.defaults.baseURL='http://127.0.0.1:3000/'
 
 Vue.prototype.axios=axios;
+
+import "mint-ui/lib/style.css"
+Vue.use(MintUi)
+axios.defaults.baseURL='http://127.0.0.1:3000/'
 Vue.use(MintUi)
 //element-ui
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI)
 Vue.config.productionTip = false
+axios.defaults.withCredentials = true;
 
 new Vue({
   router,
