@@ -2,17 +2,18 @@
 <template>
 	<!-- 模板要求：必须有一个根标签 -->
 	<div style="background: #ccc;">
-		<div class="container" v-for='(task,i) of 15' :key='i'>
+		<header/>
+		<div class="container" v-for='(task,i) of list' :key='i'>
 			<div class="img">
-				<img src="../assets/txlogo.jpg" alt="">
+				<img :src="'http://127.0.0.1:3000/img/'+task.clogo" alt="">
 			</div>
 			<div class="contxt">
-				<h4>腾讯</h4>
-				<div class="site">广州市 天河区 棠下</div>
+				<h4>{{task.cname}}</h4>
+				<div class="site">{{task.city}}</div>
 				<div class="state">
-					<span>已上市</span>
-					<span>10000人以上 </span>
-					<span>互联网</span>
+					<span>{{task.financing}}</span>
+					<span>{{task.many}}</span>
+					<span>{{task.tmt}}</span>
 				</div>
 				<hr>
 				<div class="hot">
@@ -26,13 +27,28 @@
 
 <script>
 	// vue 组件:导出默认对象
+	import header from '../components/aboutus/header'
 	export default {
 		data(){
 			//当前组件共享数据，模块直接读取
 			return{
 			//默认返回空对象（没数据）
-			
+					list:[]
 			}
+		},
+		methods:{
+			loadMore(){
+				var url='company';
+				this.axios.get(url).then(res=>{
+					this.list=res.data;
+				})
+			}
+		},
+		created(){
+			this.loadMore();
+		},
+		components:{
+			'header':header	
 		}
 	}
 </script>

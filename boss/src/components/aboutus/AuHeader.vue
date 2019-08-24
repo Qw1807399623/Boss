@@ -1,8 +1,8 @@
 <template>
 	<div class="auheader">
 		<div class="au_h_lf">
-			<router-link :to='`/companylist`'><img src="../../assets/zuojiankuohao.png" alt=""></router-link>
-			<span v-show="y>111">腾讯</span></div>
+			<img src="../../assets/zuojiankuohao.png" @click="goback">
+			<span v-show="y>111">{{cname}}</span></div>
 		<div class="au_h_rg">
 			<div class="concern" v-show="!isconcern"  @click="attin">+ 关注</div>
 			<div class="concern" v-show="isconcern"  @click="attout">已关注</div>
@@ -24,7 +24,11 @@
 				y:0
 			}
 		},
+		props:['cname'],
 		methods:{
+			goback(){
+				window.history.go(-1);
+			},
 			attin(){
 				this.isconcern=true,
 				this.$toast({

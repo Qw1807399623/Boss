@@ -2,16 +2,16 @@
 <template>
 	<!-- 模板要求：必须有一个根标签 -->
 	<div class="emm">
-		<auheader :aboutus='aboutus'/>
+		<auheader :cname='cname'/>
 		<div class="bg" ></div>
 		<div class="detail-mask"></div>
 		<div class="contanier">
 			<div class="bor">
-				<audetail/>
+				<audetail :cname='cname' :financing='financing' :tmt='tmt' :many='many'/>
 			</div>
-			<aboutus/>
-			<cppic/>
-			<cpsite/>
+			<aboutus :aboutus='aboutus'/>
+			<cppic />
+			<cpsite />
 			<cpuccn/>
 			<cpbi/>
 		<myfooter></myfooter>
@@ -35,15 +35,34 @@
 			//当前组件共享数据，模块直接读取
 			return{
 			//默认返回空对象（没数据）
-				aboutus:''
+				aboutus:'',
+				cboss:'',
+				city:'',
+				cname:'',
+				compall:'',
+				financing:'',
+				lmonry:'',
+				logintiem:'',
+				many:'',
+				tmt:'',
+				uccn:''
 			}
 		},
 		methods:{
 			loadMore(){
 				var url='company';
 				this.axios.get(url).then(res=>{
-					this.aboutus=res.data[0].aboutus;
-					console.log(this.aboutus);
+				this.aboutus=res.data[0].aboutus;
+				this.cboss=res.data[0].cboss;
+				this.city=res.data[0].city;
+				this.cname=res.data[0].cname;
+				this.compall=res.data[0].compall;
+				this.financing=res.data[0].financing;
+				this.lmonry=res.data[0].lmonry;
+				this.logintiem=res.data[0].logintiem;
+				this.many=res.data[0].many;
+				this.tmt=res.data[0].tmt;
+				this.ucc=res.data[0].ucc;
 				})
 			}
 		},

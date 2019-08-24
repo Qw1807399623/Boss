@@ -3,10 +3,13 @@ const mysql=require("mysql")
 const cors=require("cors");
 const bodyParser=require("body-parser")
 const session=require("express-session");
-const pro=require("./routes/pro");
+const router=require("./routes/pro");
 const reg=require("./routes/reg");
 const login=require("./routes/login");
 const company=require('./routes/company');
+const search = require('./routes/search')
+const search2 = require('./routes/search-2')
+const selectpim = require("./routes/getpim")
 var server=express();
 server.use(express.static("public"));
 server.listen(3000)
@@ -20,9 +23,9 @@ server.use(session({
     saveUninitialized:true,
 }))
 server.use(bodyParser.urlencoded({extended:false}))
-server.use("/pro",pro);
+server.use("/pro",router);
 server.use("/reg",reg);
 server.use("/login",login);
 server.use('/company',company);
-
-
+server.use('/search',search);
+server.use('/search2',search2)

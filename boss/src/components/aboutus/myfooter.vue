@@ -33,8 +33,6 @@
 			 console.log(1111);
 			}
 		},
-		
-		
 		mounted(){
 		  var scrollTop=0,
 		  topValue=window.scrollY;  

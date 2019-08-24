@@ -7,11 +7,11 @@
                     <span>{{isCity}}</span>
                     <img src="../../../public/img/dowm.png" id="dowm2" :class="{'rotate':isrotate}">
                 </div>
-                <input type="text" placeholder="搜索职位" v-model:value="kwords">
+                <input type="text" placeholder="搜索职位" v-model="kwords">
             </div>
             <div class="seek"  @click="search">搜索</div>
         </div>
-        <div :class="{'city_box':true,'show':isShow}" v-if="isNone">
+        <div :class="{'city_box':true,'show':isShow}" v-if="isNone" @touchmove.prevent>
             <div class="back">
                 <img src="../../../public/img/cha.png" alt="" id="back" @click="handleHide">
                 <div>选择城市</div>
@@ -19,33 +19,39 @@
             <div class="city" @click="city">
                 <ul>
                     <li class="gray">热门城市</li>
-                    <li>北京</li>
-                    <li>上海</li>
-                    <li>天津</li>
-                    <li>重庆</li>
-                    <li>黑龙江</li>
-                    <li>吉林</li>
-                    <li>辽宁</li>
-                    <li>内蒙古</li>
-                    <li>河北</li>
+                    <li data-canclick="true">北京</li>
+                    <li data-canclick="true">上海</li>
+                    <li data-canclick="true">天津</li>
+                    <li data-canclick="true">重庆</li>
+                    <li data-canclick="true">黑龙江</li>
+                    <li data-canclick="true">吉林</li>
+                    <li data-canclick="true">辽宁</li>
+                    <li data-canclick="true">内蒙古</li>
+                    <li data-canclick="true">河北</li>
                 </ul>
                 <ul class="gray">
-                    <li>全国</li>
-                    <li>北京</li>
-                    <li>上海</li>
-                    <li>广州</li>
-                    <li>深圳</li>
-                    <li>杭州</li>
-                    <li>天津</li>
-                    <li>西安</li>
-                    <li>苏州</li>
-                    <li>武汉</li>
+                    <li data-canclick="true">全国</li>
+                    <li data-canclick="true">北京</li>
+                    <li data-canclick="true">上海</li>
+                    <li data-canclick="true">广州</li>
+                    <li data-canclick="true">深圳</li>
+                    <li data-canclick="true">杭州</li>
+                    <li data-canclick="true">天津</li>
+                    <li data-canclick="true">西安</li>
+                    <li data-canclick="true">苏州</li>
+                    <li data-canclick="true">武汉</li>
                 </ul>
             </div>
-        </div> 
+        </div>
+        <van-overlay
+        @touchmove.prevent
+        class="p"
+        :show="isShow"
+        />
     </div>
 </template>
 <script>
+import Bus from '../../assets/bus.js'
 export default {
     data () {
         return {
@@ -54,19 +60,30 @@ export default {
             isrotate:false,
             isCity:"广州",
             kwords:"",
+            arr:[]
         }
     },
     methods:{
         search(){
-                console.log(this.kwords)
+              this.axios.get('http://127.0.0.1:3000/search',{params:{msg:this.kwords}})
+                .then(result=>{
+                    this.arr=result.data;
+                    // console.log(result.data);
+                    Bus.$emit('val',this.arr)
+                })
         },
         city(e){
-            if(e.target.innerHTML!="热门城市"){
+            if(e.target.dataset.canclick){
                 this.isCity=e.target.innerHTML
                 this.isShow = false;
                 setTimeout(()=>{
                     this.isNone = false;
-                },400)
+                },400);
+                this.axios.get('http://127.0.0.1:3000/search',{params:{msg:this.isCity}})
+                .then(result=>{
+                    this.arr=result.data;
+                    Bus.$emit('val',this.arr)
+                })
             }
         },
         handleShow(e) {
@@ -99,11 +116,6 @@ export default {
             }
         }
     },
-    watch: {
-        kwords(){
-            this.search()
-        }
-    }
 }
 </script>
 <style scoped>
@@ -111,7 +123,7 @@ export default {
         transform:rotate(180deg)
     }
     .show {
-        top:0 !important;
+        top:0px !important;
     } 
 
     .gray{
@@ -124,6 +136,7 @@ export default {
     }
     .back{
         display: flex;
+        margin:20px 0px;
     }
     .back>div{
         position: relative;
@@ -131,11 +144,11 @@ export default {
     }
     .city_box{
         transition: all .4s linear;
-        position:absolute;
+        position: fixed;
         width:100%;
         background-color:#ffffff;
         /* display:none; */
-        transform: translateY(10%);
+        /* transform: translateY(10%); */
         z-index:5;
         top:700px;
         /* transition: all 1s; */
