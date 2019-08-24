@@ -2,18 +2,18 @@
 <template>
 	<!-- 模板要求：必须有一个根标签 -->
 	<div class="emm">
-		<auheader :cname='cname'/>
+		<auheader :list='list'/>
 		<div class="bg" ></div>
 		<div class="detail-mask"></div>
 		<div class="contanier">
 			<div class="bor">
-				<audetail :cname='cname' :financing='financing' :tmt='tmt' :many='many'/>
+				<audetail :list='list'/>
 			</div>
-			<aboutus :aboutus='aboutus'/>
-			<cppic />
+			<aboutus :list='list'/>
+			<cppic :list='list' />
 			<cpsite />
-			<cpuccn/>
-			<cpbi/>
+			<cpuccn :list='list'/>
+			<cpbi :list='list'/>
 		<myfooter></myfooter>
 		</div>
 	</div>
@@ -45,27 +45,20 @@
 				logintiem:'',
 				many:'',
 				tmt:'',
-				uccn:''
+				uccn:'',
+				list:[]
 			}
 		},
+		props:['cid'],
 		methods:{
 			loadMore(){
 				var url='company';
 				this.axios.get(url).then(res=>{
-				this.aboutus=res.data[0].aboutus;
-				this.cboss=res.data[0].cboss;
-				this.city=res.data[0].city;
-				this.cname=res.data[0].cname;
-				this.compall=res.data[0].compall;
-				this.financing=res.data[0].financing;
-				this.lmonry=res.data[0].lmonry;
-				this.logintiem=res.data[0].logintiem;
-				this.many=res.data[0].many;
-				this.tmt=res.data[0].tmt;
-				this.ucc=res.data[0].ucc;
+				this.list=res.data[this.cid-1];
 				})
 			}
 		},
+		// props:['cid'],
 		created(){
 			this.loadMore();
 		},

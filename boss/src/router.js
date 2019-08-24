@@ -27,7 +27,7 @@ export default new Router({
     {path:'/',name: 'home',component: Home},
     {path:"/companyList",component:companyList},
     {path:'/',name:'home',component:Home},
-	 {path:'/Company',component:Company}
+	 {path:'/Company/:cid',component:Company,props:true}
 	 
   ]
 })

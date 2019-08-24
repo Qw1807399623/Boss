@@ -4,11 +4,11 @@
 		<div class="au_detail">
 			<div class="au_title">
 				<div class="au_dt_lf">
-					<div class="au_dt_tit" v-text="cname"></div>
-					<div class="au_dt_stit" v-text="financing+'·'+many+'·'+tmt"></div>
+					<div class="au_dt_tit" v-text="list.cname"></div>
+					<div class="au_dt_stit" v-text="list.financing+'·'+list.many+'·'+list.tmt"></div>
 				</div>
 				<div class="au_dt_rg">
-					<img src="../../assets/txlogo.jpg" alt="" style="width: 40px;height: 40px;">
+					<img :src="`http://127.0.0.1:3000/img/`+list.clogo" alt="" style="width: 40px;height: 40px;">
 					<!-- <img :src="'http://127.0.0.1:3000/'+img/txlogo.jpg" alt="" style="width: 40px;height: 40px;"> -->
 				</div>
 			</div>
@@ -91,7 +91,7 @@
 		methods:{
 			
 		},
-		props:['cname','financing','tmt','many']
+		props:['list']
 		
 	}
 </script>

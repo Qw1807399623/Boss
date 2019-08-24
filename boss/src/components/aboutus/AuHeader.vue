@@ -2,7 +2,7 @@
 	<div class="auheader">
 		<div class="au_h_lf">
 			<img src="../../assets/zuojiankuohao.png" @click="goback">
-			<span v-show="y>111">{{cname}}</span></div>
+			<span v-show="y>111">{{list.cname}}</span></div>
 		<div class="au_h_rg">
 			<div class="concern" v-show="!isconcern"  @click="attin">+ 关注</div>
 			<div class="concern" v-show="isconcern"  @click="attout">已关注</div>
@@ -24,7 +24,7 @@
 				y:0
 			}
 		},
-		props:['cname'],
+		props:['list'],
 		methods:{
 			goback(){
 				window.history.go(-1);
