@@ -4,10 +4,12 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import Tabbar from './views/Tabbar'
-Vue.component("tabBar",Tabbar)
 import 'vant/lib/button/style'
 import { Overlay } from 'vant';
+import Vuex from 'vuex'
 
+Vue.use(Vuex)
+Vue.component("tabBar",Tabbar)
 Vue.use(Overlay);
 //mint-ui
 import { Button } from 'vant'

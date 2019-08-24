@@ -8,6 +8,7 @@ const reg=require("./routes/reg");
 const login=require("./routes/login");
 const company=require('./routes/company');
 const deta=require("./routes/Details");
+const details2=require("./routes/Details-bottom");
 const search = require('./routes/search')
 const search2 = require('./routes/search-2')
 const selectpim = require("./routes/getpim")
@@ -27,35 +28,17 @@ server.use(bodyParser.urlencoded({extended:false}))
 server.use("/pro",router);
 server.use("/reg",reg);
 server.use("/login",login);
+<<<<<<< HEAD
 server.use('/company',company);
 server.use('/search',search);
 server.use('/search2',search2)
+=======
+server.use("/selectpim",selectpim)
+>>>>>>> 0d802abfaff034dcf0650493bdd6f343b7a6eb32
 server .use("/deta",deta);
 server.use('/search',search);
 server.use('/search2',search2);
-
-var pool = mysql.createPool({
-    host: '127.0.0.1',
-    port: 3306,
-    user: 'root',
-    password: '',
-    database: 'boss',
-    connectionLimit: 15,
-});
-
-server.get('/bossPro',function(req,res){
-    var sql="SELECT pid,pname,position,city,age,education,minsal,maxsal,many,financing,jpg FROM boss_pro";
-    pool.query(sql,(err,result)=>{
-        if(err){
-            throw err;
-        }
-        res.send({
-            code:1,
-            msg:"查询成功",
-            data:result
-        })
-    })
-})
+server.use('/details2',details2);
 
 
 

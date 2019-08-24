@@ -1,5 +1,6 @@
 <template>
     <div>
+        <slideshow></slideshow>
         <div class="technical">
             <div class="my_lineHeight">
                 <img class="my_img" src="../../public/img/technology.png" alt="">
@@ -97,6 +98,19 @@
         </div>
     </div>
 </template>
+<script>
+import slideshow from "./slideshow"
+export default {
+    data () {
+        return {
+            
+        }
+    },
+    components:{
+        "slideshow":slideshow
+    }
+}
+</script>
 <style scoped>
 .technical{
     text-align: left;

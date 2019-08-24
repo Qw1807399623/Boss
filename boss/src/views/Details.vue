@@ -1,9 +1,9 @@
 <template>
   <div>
     <div id="header">
-      <a href="javascript:;">
+      <router-link :to="`/pro`">
         <span>BOSS直聘</span>
-      </a>
+      </router-link>
       <input id="search" placeholder="搜索职位" type="text" />
       <div class="searchBg"></div>
     </div>
@@ -39,7 +39,28 @@
     <div>
       <h1>职位描述</h1>
       <h3></h3>
+      <div class="description">
       <br />
+        1. 岗位职责：
+        <br>
+        a. 负责公司运维平台的WEB前端开发；
+        <br>
+        b. 配合产品经理、后台开发人员完成项目前端开发，负责公司各产品需求开发、易用性改进、界面优化。
+        <br>
+        2. 岗位要求：
+        <br>
+        a. 对HTTP协议、网页性能优化有较好的理解，熟悉常用的前端调试技术和工具；
+        <br>
+        b. 关注前端技术，HTML/CSS/JS基础扎实，熟悉页面架构和常用布局；
+        <br>
+        c. 对常用JavaScript框架应用有一定的工程经验，有Angulajs、Reactjs、Vue.js 等MVVM框架的实战经历更佳；
+        <br>
+        d. 对互联网产品可用性、易用性等相关知识有了解，有交互设计基础、视觉设计基础者优先；
+        <br>
+        e. 有Web后台开发经验，熟悉常用Web框架（如Flask、Django等）优先；
+        <br>
+        f. 具有良好的业务理解能力、沟通能力和强烈的责任心，具备较强的的团队意识和执行力
+      </div>             
     </div>
 
     <div>
@@ -149,8 +170,8 @@ export default {
         console.log(this.arr)
       });
 
-      this.axios.get("bossPro").then(result=>{
-        console.log(result);
+      this.axios.get("details2").then(result=>{
+        console.log(result.data.data);
         this.list=result.data.data;
       })
     }
@@ -163,6 +184,11 @@ export default {
 
 <style scoped>
 /*===============header============*/
+.description{
+  text-align: left;
+  width:90%;
+  padding:5%;
+}
 #header {
   position: relative;
   height: 47px;
@@ -330,6 +356,7 @@ h3 {
   position: relative;
   z-index: 5;
   overflow: hidden;
+  
 }
 .business {
   margin: auto;
