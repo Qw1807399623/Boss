@@ -1,7 +1,7 @@
 <template>
 	<div class="auheader">
 		<div class="au_h_lf">
-			<router-link :to='`/companylist`'><img src="../../assets/zuojiankuohao.png" alt=""></router-link>
+			<span @click="back"><img src="../../assets/zuojiankuohao.png" alt=""></span>
 			<span v-show="y>111">腾讯</span></div>
 		<div class="au_h_rg">
 			<div class="concern" v-show="!isconcern"  @click="attin">+ 关注</div>
@@ -25,6 +25,9 @@
 			}
 		},
 		methods:{
+			back(){
+				this.$router.go(-1)
+			},
 			attin(){
 				this.isconcern=true,
 				this.$toast({

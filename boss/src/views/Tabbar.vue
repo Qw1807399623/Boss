@@ -1,7 +1,7 @@
 <template>
     <div>
         <mt-tabbar v-model="active" fixed>
-            <mt-tab-item id="tab">
+            <mt-tab-item id="tab1">
                 <img src="../../public/img/tabbar_home.png" slot="icon" alt="">
                 首页
             </mt-tab-item>
@@ -26,6 +26,9 @@ export default {
         return{
             active:"tab1",
         }
+    },
+    methods:{
+        
     }
 }
 </script>

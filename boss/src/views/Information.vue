@@ -153,11 +153,11 @@
                 </div>
             </div>
         </div>
-        <tabBar></tabBar>
     </div>
 </template>
 <script>
 // import Onloadimg from './Onloadimg'
+
 export default {
     data(){
         return{
@@ -202,7 +202,7 @@ export default {
             if(uid!=null){
             this.isLogin=true
             }
-            console.log(uid)
+            // console.log(uid)
         },
         quitLogin(){
             this.uid=null;
@@ -214,15 +214,17 @@ export default {
                 this.axios.get("http://127.0.0.1:3000/selectpim",{params:{
                     uid
                 }}).then(res=>{
-                    console.log(res)
+                    // console.log(res)
                     this.pname=res.data[0].phone
                 })
             }
-        }
+        },
+       
     },
     created(){
         this.getUid()
         this.getPim()
+    
     }
 }
 </script>
