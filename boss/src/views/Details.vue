@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="header">
-      <router-link :to="`/pro`">
+      <router-link :to="`/bobo`">
         <span>BOSS直聘</span>
       </router-link>
       <input id="search" placeholder="搜索职位" type="text" />

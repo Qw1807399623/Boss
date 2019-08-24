@@ -14,7 +14,6 @@
                 <in-formation></in-formation>
             </mt-tab-container-item>
         </mt-tab-container>
-        <tabBar></tabBar>
         <mt-tabbar v-model="active" fixed>
             <mt-tab-item id="tab1">
                 <img src="../../public/img/tabbar_home.png" slot="icon" alt="">
@@ -40,12 +39,18 @@ import Index from './Index'
 import CompanyList from './companylist'
 import Profession from './profession'
 import Information from './Information'
-import bus from '../assets/bus'
+import Bus from '../assets/bus'
 export default {
     data(){
         return{
             active:"tab1"
         }
+    },
+    mounted: function () {
+      var vm = this
+      Bus.$on('tab', (data) => {
+        vm.active = data
+      })
     },
     methods:{
         backTo(){

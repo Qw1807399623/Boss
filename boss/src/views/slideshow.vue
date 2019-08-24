@@ -30,19 +30,13 @@ export default {
     data () {
         return {
             arr:[],
-            kwords:""
+            kwords:"",
+            active:"tab2"
         }
     },
     methods:{
       search(){
-          sessionStorage.setItem('val',this.kwords)
-          this.axios.get('http://127.0.0.1:3000/search',{params:{msg:this.kwords}})
-            .then(result=>{
-                this.arr=result.data;
-                // console.log(result.data);
-                Bus.$emit('val',this.arr)
-            })
-            this.$router.push('/pro')
+          Bus.$emit('tab',this.active)
         },
     }
 };

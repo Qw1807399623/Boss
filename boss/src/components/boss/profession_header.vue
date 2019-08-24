@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="header">
-            <router-link :to="`/index`">
+            <router-link :to="`/bobo`">
                 <img src="../../../public/img/首页.png" id="home_page">
             </router-link>
             <div class="search_box">

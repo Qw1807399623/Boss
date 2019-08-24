@@ -16,7 +16,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path:"/Boss",component:Boss},
+    {path:"/Bobo",component:Boss},
     {path:"/Index",component:Index},
     {path:"/Details",component:Details},
     {path:"/Information",component:Information},
