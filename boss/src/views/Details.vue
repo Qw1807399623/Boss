@@ -149,8 +149,8 @@ export default {
         console.log(this.arr)
       });
 
-      this.axios.get("bossPro").then(result=>{
-        console.log(result);
+      this.axios.get("details2").then(result=>{
+        console.log(result.data.data);
         this.list=result.data.data;
       })
     }
