@@ -2,7 +2,8 @@
 <template>
 	<!-- 模板要求：必须有一个根标签 -->
 	<div style="background: #ccc;">
-		<header/>
+		<myheader/>
+		<div class="none"></div>
 		<router-link v-for='(task,i) of list' :key='i' :to='`/Company/`+task.cid'>
 			<div class="container" >
 				<div class="img">
@@ -50,13 +51,16 @@
 			this.loadMore();
 		},
 		components:{
-			'header':header
+			'myheader':header
 		}
 	}
 </script>
 
 <style scoped>
 	/* 当前组件专有样式内容 */
+	.none{
+		height:37px;
+	}
 	h4{
 		margin: 0.5rem 0;
 		font-size: 1.25rem;
@@ -78,6 +82,7 @@
 	.container{
 		display: flex;
 		background: #fff;
+		padding-top: 0.5rem;
 		font-size: 12px;
 		margin-bottom: 5px;
 	}

@@ -26,50 +26,6 @@ CREATE TABLE boss_pro(
     /*图片路径*/
     jpg VARCHAR(128)
 );
-/*********注册表*************/
-CREATE TABLE boss_reg(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    phone VARCHAR(15),
-    upwd VARCHAR(32)
-);
-
-/***********测试*********/
-INSERT INTO boss_reg VALUES(NULL,13178599893,"123456");
-<<<<<<< HEAD
-<<<<<<< HEAD
-CREATE TABLE boss_pro(
-    /*公司ID*/
-    pid INT PRIMARY KEY AUTO_INCREMENT,
-    /*公司名称*/
-    pname VARCHAR(128),
-    /*职位*/
-    position VARCHAR(128),
-    /*地区*/
-    city VARCHAR(128),
-    /*工作经验*/
-    age VARCHAR(128),
-    /*学历*/
-    education VARCHAR(128),
-    /*最低工资*/
-    minsal INT,
-    /*最高工资*/
-    maxsal INT,
-    /*规模*/
-    many INT,
-    /*融资*/
-    financing VARCHAR(128),
-    /*图片路径*/
-    jpg VARCHAR(128)
-);
-INSERT INTO boss_pro VALUES
-(NULL,"健客网","web前端","广州","3-5年","本科",10,13,50,"A轮","jianke.jpg"),
-(NULL,"漫道科技","web前端","广州","3-5年","本科",14,15,100,"B轮","mandao.jpg"),
-(NULL,"优点网络科技","web前端","广州","3-5年","大专",5,7,90,"C轮","youdian.jpg"),
-(NULL,"锦江酒店","web前端","广州","3-5年","本科",15,17,40,"未融资","jinjiang.jpg"),
-(NULL,"广州视睿","web前端","广州","3-5年","本科",13,16,80,"天使轮","shirui.jpg"),
-(NULL,"数块科技","web前端","广州","3-5年","本科",15,16,20,"D轮","shukuai.jpg"),
-(NULL,"南瑞信通","web前端","广州","3-5年","大专",17,19,40,"已上市","nanrui.jpg"),
-(NULL,"图匠数据","web前端","广州","3-5年","本科",15,20,150,"不需要融资","tujiang.jpg");
 
 /*********注册表*************/
 CREATE TABLE boss_reg(
@@ -79,10 +35,22 @@ CREATE TABLE boss_reg(
 );
 
 /***********测试*********/
-INSERT INTO boss_reg VALUES(NULL,13178599893,"123456");
-=======
-
-
+CREATE TABLE company(
+  cid INT PRIMARY KEY AUTO_INCREMENT,
+  cname varchar(128),
+  clogo varchar(128),
+  city varchar(128),
+  financing varchar(128),
+  many varchar(32),
+  tmt varchar(128),
+  aboutus varchar(1024),
+  cpic varchar(128),
+  uccn varchar(128),
+  compall varchar(128),
+  cboss varchar(64),
+  logintiem varchar(64),
+  lmonry varchar(64)
+);
 
 /********详情********/
 CREATE TABLE boss_details(
@@ -107,9 +75,11 @@ CREATE TABLE boss_details(
     pname VARCHAR(32)
 );
 
+INSERT INTO boss_reg VALUES(NULL,13178599893,"123456");
+
 INSERT INTO boss_details VALUES
 (NULL,'web前端','广州','1-3年','本科','HTML/CSS/web前端/JS','7-14k','','宇信科技','北京宇信科技集团股份有限公司');
->>>>>>> c51bda9ab9cb26b299fe77fec0678788f9857aeb
+
 INSERT INTO boss_pro VALUES
 (NULL,"健客网","web前端","广州","在校生","初中",10,13,50,"A轮","jianke.jpg"),
 (NULL,"漫道科技","PHP工程师","北京","3-5年","本科",14,60,100,"B轮","mandao.jpg"),
@@ -190,7 +160,6 @@ INSERT INTO boss_pro VALUES
 (NULL,"南瑞信通","高级java工程师","广州","1-3年","大专",7,10,40,"已上市","nanrui.jpg"),
 (NULL,"图匠数据","web前端","河北","5-10年","本科",7,10,150,"不需要融资","tujiang.jpg");
 
->>>>>>> 7828b3e9f4b0ddf69f0c11878649514016520150
 INSERT INTO company VALUES(NULL,"腾讯","txlogo.jpg","广州","不需要融资","10000人以上",'互联网','<p>深圳市腾讯计算机系统有限公司成立于1998年11月，由马化腾、张志东、许晨晔、陈一丹、曾李青五位创始人共同创立。是中国最大的互联网综合服务提供商之一，也是中国服务用户最多的互联网企业之一。</p><p>腾讯多元化的服务包括：社交和通信服务QQ及微信/WeChat、社交网络平台QQ空间、腾讯游戏旗下QQ游戏平台、门户网站腾讯网、腾讯新闻客户端和网络视频服务腾讯视频等。</p><p>2004年腾讯公司在香港联交所主板公开上市（股票代号00700），董事会主席兼首席执行官是马化腾。</p>','tx_company.jpg',"http://www.tencent.com","腾讯科技(深圳)有限公司",'马化腾','2000-02-24','200万美元');
 INSERT INTO company VALUES(NULL,"凡岛网络","fdlogo.jpg","广州","不需要融资","1000-9999人",'电子商务','<p>广州凡岛网络科技有限公司是一家年轻活力的互联网运营团队，现已发展壮大为拥有六家子公司的多元化的综合性企业，目前已经逐渐形成一支具备独立研发、维护、网站推广、电子商务等多功能于一体的快速成长型的互联网公司，是华南地区最具发展潜力、 最有影响力的化妆品电子商务公司之一。</p><p>WIS是与瑞士合作开发的药妆品牌，引进瑞士RAHN集团的先进技术与原料，以药品的标准来做化妆品，追求极致的科学性与安全性，来满足对生活品质有高要求的消费人群。 </p><p>品牌名WIS源自于欧洲一个古老的单词Wissenschaft，意指“科学”，作为药妆品牌，WIS致力于让护肤更科学且有效，给肌肤带来更好的护理体验。</p>','fd_company.jpg',"http://www.fandow.com/","广州凡岛网络科技有限公司",'黎文祥','2012-02-01','500万人民币元');
 INSERT INTO company VALUES(NULL,"网易游戏","wylogo.jpg","广州","已上市","10000人以上",'游戏','<p>网易公司由丁磊先生于 1997 年6月创立,凭借敏锐的市场洞察力，网易公司从10多人的初创团队发展至今，在全世界已拥有13000多名员工，并于2000年6月成功在美国纳斯达克股票市场公开上市（NASDAQ：NTES）。随着公司规模的不断扩大，网易已经成为中国最领先的互联网技术公司。</p><p>丁磊先生一向信仰并注重互联网技术创新带给人类的福音，将之确立为公司的核心生产力，并亲力主持多项技术创新，例如网易电子邮箱系统、中文搜索引擎、大型网络角色扮演游戏。这些技术创新，不但实现了中国互联网行业多项“零的突破”，而且使得网易公司凝聚的技术实力足以傲视整个互联网行业。 </p><p>经过21年的发展，网易成就中国领先互联网技术公司的地位，其成功不是偶然。如同世界上任何优秀的组织一样，网易的成功离不开优秀人才的不断加盟，离不开大批员工长期默默无闻的奉献、智慧和辛劳，更离不开团队持续的创新耕耘。</p><p>网易拥有一批活跃的年轻团队，每位成员都能在充满活力的氛围中孜孜不倦地为理想共同奋斗。我们的团队不仅年轻，而且优秀。网易不断领跑中国互联网发展离不开优秀的团队。无论是领先的技术团队、敏锐的新闻团队、专业的销售团队还是高效的管理团队，都为网易的辉煌，中国互联网事业的发展倾注自己最大的力量。</p>','wy_company.jpg',"https://hr.163.com/","网易(杭州)网络有限公司",'丁磊','2006-06-02','13760万美元');

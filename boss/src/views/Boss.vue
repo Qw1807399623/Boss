@@ -39,7 +39,7 @@ import Index from './Index'
 import CompanyList from './companylist'
 import Profession from './profession'
 import Information from './Information'
-import Bus from '../assets/bus'
+import Bus from '../assets/bus.js'
 export default {
     data(){
         return{

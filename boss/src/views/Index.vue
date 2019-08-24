@@ -6,7 +6,7 @@
                 <img class="my_img" src="../../public/img/technology.png" alt="">
                 <span class="technical_title">技术</span>
             </div>
-            <div class="myTab">
+            <div class="myTab" @click="jump">
                 <span>Java</span>
                 <span>PHP</span>
                 <span> Web前端</span>
@@ -22,7 +22,7 @@
                 <img class="my_img" src="../../public/img/product.png" alt="">
                 <span class="technical_title">产品</span>
             </div>
-            <div class="myTab">
+            <div class="myTab" @click="jump">
                 <span>产品经理</span>
                 <span>产品助理</span>
                 <span>网页产品经理</span>
@@ -34,7 +34,7 @@
                 <img class="my_img" src="../../public/img/designer.png" alt="">
                 <span class="technical_title">设计</span>
             </div>
-            <div class="myTab">
+            <div class="myTab" @click="jump">
                 <span>UI设计师</span>
                 <span>平面设计师</span>
                 <span>交互设计师</span>
@@ -46,7 +46,7 @@
                 <img class="my_img" src="../../public/img/market.png" alt="">
                 <span class="technical_title">市场</span>
             </div>
-            <div class="myTab">
+            <div class="myTab" @click="jump">
                 <span>市场营销</span>
                 <span>商务渠道</span>
                 <span>品牌公关</span>
@@ -62,7 +62,7 @@
                 <img class="my_img" src="../../public/img/operate.png" alt="">
                 <span class="technical_title">运营</span>
             </div>
-            <div class="myTab">
+            <div class="myTab" @click="jump">
                 <span>用户运营</span>
                 <span>产品运营</span>
                 <span>新媒体运营</span>
@@ -78,7 +78,7 @@
                 <img class="my_img" src="../../public/img/senior.png" alt="">
                 <span class="technical_title">职能/高级管理</span>
             </div>
-            <div class="myTab">
+            <div class="myTab" @click="jump">
                 <span>人力资源</span>
                 <span>行政</span>
                 <span>财务</span>
@@ -100,10 +100,17 @@
 </template>
 <script>
 import slideshow from "./slideshow"
+import Bus from '../assets/bus'
 export default {
     data () {
         return {
-            
+            active:""
+        }
+    },
+    methods: {
+        jump(){
+            this.active="tab2"
+            Bus.$emit('tab',this.active)
         }
     },
     components:{

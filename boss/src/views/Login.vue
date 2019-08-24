@@ -1,7 +1,7 @@
 <template>
      <div>
         <div id="BoosLogin">    
-            <div class="RegTitle">
+            <div class="RegTitle" @click="back">
                 <h3>登录BOSS直聘</h3>
             </div>
             <div class="formInput">
@@ -62,6 +62,7 @@
     </div>
 </template>
 <script>
+import Bus from '../assets/bus.js'
 export default {
     data(){
         return{
@@ -72,9 +73,15 @@ export default {
             tData:{start:0,end:0},//touch产生的参数
             phoneVal:"",
             upwdVal:"",
+            active:"",
         }
     },
     methods:{
+        back(){
+          this.active="tab1"
+          Bus.$emit('tab',this.active)
+          this.$router.push('/bobo')
+        },
         //登录验证
         LoginTest(){
             if(this.myPosition.left!="297px"){
@@ -121,7 +128,7 @@ export default {
                     let uid = res.data.data.id;
                     console.log(uid)
                     sessionStorage.setItem("uid",uid);
-                    this.$router.push("/pro")
+                    this.$router.push("/bobo")
                     }
                 })
             }

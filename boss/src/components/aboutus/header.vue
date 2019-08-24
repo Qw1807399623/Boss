@@ -30,9 +30,10 @@
 <style scoped>
 	/* 当前组件专有样式内容 */
 	.top{
+		width:100%;
 		text-align: left;
 		color: #fff;
-		padding: 5px;
+		padding: 5px 0PX 5PX 20PX;
 		position: fixed;
 		font-size: 1.5rem;
 		background: #1ed4cb;

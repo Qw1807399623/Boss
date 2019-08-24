@@ -1,9 +1,7 @@
 <template>
     <div>
         <div class="header">
-            <router-link :to="`/bobo`">
-                <img src="../../../public/img/首页.png" id="home_page">
-            </router-link>
+            <img src="../../../public/img/首页.png" id="home_page" @click="back">
             <div class="search_box">
                 <div id="city" @click="handleShow($event)">
                     <span>{{isCity}}</span>
@@ -62,10 +60,15 @@ export default {
             isrotate:false,
             isCity:"广州",
             kwords:"",
-            arr:[]
+            arr:[],
+            active:"",
         }
     },
     methods:{
+        back(){
+            this.active="tab1"
+            Bus.$emit('tab',this.active)
+        },
         search(){
               this.axios.get('http://127.0.0.1:3000/search',{params:{msg:this.kwords}})
                 .then(result=>{

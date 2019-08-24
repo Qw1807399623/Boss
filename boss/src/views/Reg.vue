@@ -1,8 +1,8 @@
 <template>
     <div>
         <div id="BoosReg">    
-            <div class="RegTitle">
-                <h3>注册BOSS直聘</h3>
+            <div class="RegTitle"  >
+                <h3 @click="myback">注册BOSS直聘</h3>
             </div>
             <div class="formInput">
                 <img src="../../public/img/Regphone.png" class="Regphone"/>
@@ -72,6 +72,7 @@
 </template>
 <script>
 import SIdentify from './Identify.vue'
+import Bus from '../assets/bus.js'
 import qs from 'qs'
 export default {
     data(){
@@ -86,29 +87,34 @@ export default {
             phoneVal:"",
             upwdVal:"",
             msgVal:"",
-            myCb:false
+            myCb:false,
+            active:"",
         }
     },
     components:{
         "s-identify":SIdentify
     },
     methods:{
-        
+        myback(){
+          this.active="tab1"
+          Bus.$emit('tab',this.active)
+          this.$router.push('/bobo')
+        },
         //手机号验证
         phoneTest(){
             if(this.phoneVal==""){
-                this.$toast({
+              /*   this.$toast({
                     message:"请输入手机号",
                     position:"bottom"
-                })
+                }) */
                 return
             }else{
                 let reg=/^1[3-8]\d{9}$/;
                 if(reg.test(this.phoneVal)==false){
-                    this.$toast({
+                   /*  this.$toast({
                         message:"手机号格式不正确",
                         position:"bottom"
-                        })
+                        }) */
                         return
                 }
 
@@ -118,18 +124,18 @@ export default {
         upwdTest(){
             
              if(this.upwdVal==""){
-                this.$toast({
+              /*   this.$toast({
                     message:"请输入密码",
                     position:"bottom"
-                    })
+                    }) */
                     return
             }else{
                 let reg=/^[0-9a-z]{6,16}$/i
                 if(reg.test(this.upwdVal)==false){
-                    this.$toast({
+                  /*   this.$toast({
                         message:"密码格式不正确",
                         position:"bottom"
-                    })
+                    }) */
                     return
                 }
             }
@@ -140,6 +146,7 @@ export default {
     Reg(){
         let reg=/^[0-9a-z]{6,16}$/i
          let reg2=/^1[3-8]\d{9}$/;
+         
        if(this.upwdVal==""){
                 this.$toast({
                     message:"请输入密码",
@@ -209,7 +216,7 @@ export default {
                     let uid = res.data.data.id;
                     console.log(uid)
                     sessionStorage.setItem("uid",uid);
-                    this.$router.push('/pro')  
+                    this.$router.push('/bobo')  
                 
                 }
             })
