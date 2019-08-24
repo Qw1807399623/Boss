@@ -35,6 +35,34 @@ CREATE TABLE boss_reg(
 
 /***********测试*********/
 INSERT INTO boss_reg VALUES(NULL,13178599893,"123456");
+
+
+
+/********详情********/
+CREATE TABLE boss_details(
+    pid INT PRIMARY KEY AUTO_INCREMENT,
+    /*职位*/
+    position VARCHAR(128),
+    /*地点*/
+    city VARCHAR(128),
+    /*工作经验*/ 
+    age VARCHAR(128),
+    /*学历*/
+    education VARCHAR(128),
+    /*技能*/
+    skill VARCHAR(128),
+    /*工资*/
+    sal INT,
+    /*图片头像*/
+    jpg VARCHAR(128),
+    /*网站*/
+    website VARCHAR(32),
+    /*公司名称*/
+    pname VARCHAR(32)
+);
+
+INSERT INTO boss_details VALUES
+(NULL,'web前端','广州','1-3年','本科','HTML/CSS/web前端/JS','7-14k','','宇信科技','北京宇信科技集团股份有限公司');
 INSERT INTO boss_pro VALUES
 (NULL,"健客网","web前端","广州","在校生","初中",10,13,50,"A轮","jianke.jpg"),
 (NULL,"漫道科技","PHP工程师","北京","3-5年","本科",14,60,100,"B轮","mandao.jpg"),

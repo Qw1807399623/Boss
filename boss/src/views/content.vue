@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-link :to="`/Details`">
         <div class="relative" v-for="(p,i) of arr" :key="i">
             <img :src="'http://127.0.0.1:3000/img/'+p.jpg" class="title-img">
             <div class="content-box">
@@ -20,6 +21,7 @@
                 <h1 class="salary">{{p.minsal}}K-{{p.maxsal}}K</h1>
             </div>
         </div>
+        </router-link>
     </div>
 </template>
 <script>
@@ -28,42 +30,48 @@ export default {
     data(){
         return{
             arr:[],
+            addr:''
         }
     },
     mounted: function () {
       var vm = this
-      // 用$on事件来接收参数
       Bus.$on('val', (data) => {
-        console.log(data)
         vm.arr = data
       })
     },
     methods: {
-        getData: function () {
-        console.log(this.name)
-        },
         search(){
               this.axios.get('http://127.0.0.1:3000/search')
                 .then(result=>{
                     this.arr=result.data;
                     // console.log(this.arr);
+                    this.arr=sessionStorage.getItem('val')
+                    // console.log(this.arr)
                 })
         },
         load(){
-            this.axios.get(
+            this.addr = sessionStorage.getItem('val')
+            // console.log(this.addr);
+             this.axios.get(
             "http://127.0.0.1:3000/pro"
         ).then(result=>{
             this.arr=result.data;
             // console.log(this.arr);
-        })
+        }) 
+         var param=sessionStorage.getItem('val')
+                    // console.log(param)
         }
     },
     created(){
         this.load()
+                  
     },
 }
 </script>
-<style scoped> 
+<style scoped>
+    a{
+        color:#000000;
+    }
     .relative{
         position: relative;
         display: flex;

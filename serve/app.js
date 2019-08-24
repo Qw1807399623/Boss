@@ -6,6 +6,8 @@ const session=require("express-session");
 const router=require("./routes/pro");
 const reg=require("./routes/reg");
 const login=require("./routes/login");
+const deta=require("./routes/Details");
+const details2=require("./routes/Details-bottom");
 const search = require('./routes/search')
 const search2 = require('./routes/search-2')
 const selectpim = require("./routes/getpim")
@@ -26,7 +28,10 @@ server.use("/pro",router);
 server.use("/reg",reg);
 server.use("/login",login);
 server.use("/selectpim",selectpim)
+server .use("/deta",deta);
 server.use('/search',search);
-server.use('/search2',search2)
+server.use('/search2',search2);
+server.use('/details2',details2);
+
 
 
