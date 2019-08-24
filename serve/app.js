@@ -28,16 +28,11 @@ server.use(bodyParser.urlencoded({extended:false}))
 server.use("/pro",router);
 server.use("/reg",reg);
 server.use("/login",login);
-<<<<<<< HEAD
 server.use('/company',company);
 server.use('/search',search);
 server.use('/search2',search2)
-=======
 server.use("/selectpim",selectpim)
->>>>>>> 0d802abfaff034dcf0650493bdd6f343b7a6eb32
 server .use("/deta",deta);
-server.use('/search',search);
-server.use('/search2',search2);
 server.use('/details2',details2);
 
 
