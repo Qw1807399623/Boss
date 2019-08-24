@@ -1,9 +1,9 @@
 <template>
   <div>
     <div id="header">
-      <a href="javascript:;">
+      <router-link :to="`/pro`">
         <span>BOSS直聘</span>
-      </a>
+      </router-link>
       <input id="search" placeholder="搜索职位" type="text" />
       <div class="searchBg"></div>
     </div>
@@ -170,8 +170,8 @@ export default {
         console.log(this.arr)
       });
 
-      this.axios.get("bossPro").then(result=>{
-        console.log(result);
+      this.axios.get("details2").then(result=>{
+        console.log(result.data.data);
         this.list=result.data.data;
       })
     }

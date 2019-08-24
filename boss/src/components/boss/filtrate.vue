@@ -96,13 +96,6 @@ export default {
             arr:"",
         }
     },
-    mounted: function () {
-      var vm = this
-      // 用$on事件来接收参数
-      Bus.$on('val',(data) => {
-        console.log(data)
-      })
-    },
     methods: {
         /* 工作经验 */
         search_ag(e){
