@@ -35,7 +35,6 @@ export default {
     },
     methods:{
       search(){
-        console.log(this.kwords);
           sessionStorage.setItem('val',this.kwords)
           this.axios.get('http://127.0.0.1:3000/search',{params:{msg:this.kwords}})
             .then(result=>{

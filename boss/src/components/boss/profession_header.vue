@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="header">
-            <img src="../../../public/img/首页.png" id="home_page">
+            <router-link :to="`/index`">
+                <img src="../../../public/img/首页.png" id="home_page">
+            </router-link>
             <div class="search_box">
                 <div id="city" @click="handleShow($event)">
                     <span>{{isCity}}</span>

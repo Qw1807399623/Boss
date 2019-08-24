@@ -1,9 +1,9 @@
 <template>
   <div>
     <div id="header">
-      <a href="javascript:;">
+      <router-link :to="`/pro`">
         <span>BOSS直聘</span>
-      </a>
+      </router-link>
       <input id="search" placeholder="搜索职位" type="text" />
       <div class="searchBg"></div>
     </div>
