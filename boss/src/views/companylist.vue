@@ -2,37 +2,55 @@
 <template>
 	<!-- 模板要求：必须有一个根标签 -->
 	<div style="background: #ccc;">
-		<div class="container" v-for='(task,i) of 15' :key='i'>
-			<div class="img">
-				<img src="../assets/txlogo.jpg" alt="">
-			</div>
-			<div class="contxt">
-				<h4>腾讯</h4>
-				<div class="site">广州市 天河区 棠下</div>
-				<div class="state">
-					<span>已上市</span>
-					<span>10000人以上 </span>
-					<span>互联网</span>
+		<header/>
+		<router-link v-for='(task,i) of list' :key='i' :to='`/Company/`+task.cid'>
+			<div class="container" >
+				<div class="img">
+					<img :src="'http://127.0.0.1:3000/img/'+task.clogo" alt="">
 				</div>
-				<hr>
-				<div class="hot">
-					<div>热招: <span>WXG03-微信开放平台前</span>等3981职位</div>
-					<router-link :to='`/Company`'><img src="../assets/向右尖括号.png" /></router-link>
+				<div class="contxt">
+					<h4>{{task.cname}}</h4>
+					<div class="site">{{task.city}}</div>
+					<div class="state">
+						<span>{{task.financing}}</span>
+						<span>{{task.many}}</span>
+						<span>{{task.tmt}}</span>
+					</div>
+					<hr>
+					<div class="hot">
+						<div>热招: <span>WXG03-微信开放平台前</span>等3981职位</div>
+						<img src="../assets/向右尖括号.png" />
+					</div>
 				</div>
 			</div>
-		</div>
+		</router-link>
 	</div>
 </template>
 
 <script>
 	// vue 组件:导出默认对象
+	import header from '../components/aboutus/header'
 	export default {
 		data(){
 			//当前组件共享数据，模块直接读取
 			return{
 			//默认返回空对象（没数据）
-			
+					list:[]
 			}
+		},
+		methods:{
+			loadMore(){
+				var url='company';
+				this.axios.get(url).then(res=>{
+					this.list=res.data;
+				})
+			}
+		},
+		created(){
+			this.loadMore();
+		},
+		components:{
+			'header':header
 		}
 	}
 </script>
@@ -45,6 +63,9 @@
 	}
 	img{
 		width: 50px;
+	}
+	a{
+		color: #2c3e50;
 	}
 	hr{
 		background: #eee;

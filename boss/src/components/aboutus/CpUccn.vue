@@ -5,7 +5,7 @@
 		<div class="cp_uccn">
 			<div class="uccn">公司官网</div>
 			<div class="link">
-				<div>http://www.tencent.com</div>
+				<div v-text="list.uccn"></div>
 				<div><img src="../../assets/向右尖括号.png" alt=""></div>
 			</div>
 		</div>
@@ -21,7 +21,8 @@
 			//默认返回空对象（没数据）
 				
 			}
-		}
+		},
+		props:['list']
 	}
 </script>
 

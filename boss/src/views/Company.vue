@@ -2,18 +2,18 @@
 <template>
 	<!-- 模板要求：必须有一个根标签 -->
 	<div class="emm">
-		<auheader/>
-		<div class="bg"></div>
+		<auheader :list='list'/>
+		<div class="bg" ></div>
 		<div class="detail-mask"></div>
 		<div class="contanier">
 			<div class="bor">
-				<audetail/>
+				<audetail :list='list'/>
 			</div>
-			<aboutus/>
-			<cppic/>
-			<cpsite/>
-			<cpuccn/>
-			<cpbi/>
+			<aboutus :list='list'/>
+			<cppic :list='list' />
+			<cpsite />
+			<cpuccn :list='list'/>
+			<cpbi :list='list'/>
 		<myfooter></myfooter>
 		</div>
 	</div>
@@ -29,13 +29,27 @@
 	import CpUccn from '../components/aboutus/CpUccn'
 	import CpBI from '../components/aboutus/CpBI'
 	import myfooter from '../components/aboutus/myfooter'
+	
 	export default {
 		data(){
 			//当前组件共享数据，模块直接读取
 			return{
 			//默认返回空对象（没数据）
-				
+				list:[]
 			}
+		},
+		props:['cid'],
+		methods:{
+			loadMore(){
+				var url='company';
+				this.axios.get(url).then(res=>{
+				this.list=res.data[this.cid-1];
+				})
+			}
+		},
+		// props:['cid'],
+		created(){
+			this.loadMore();
 		},
 		components:{
 			'auheader':AuHeader,

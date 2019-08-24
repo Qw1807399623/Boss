@@ -24,9 +24,10 @@ export default new Router({
     {path:"/Pro",component:Profession},
     {path:"/Reg",component:Reg},
     {path:"/Upgrade",component:Upgrade},
-    {path: '/',name: 'home',component: Home},
+    {path:'/',name: 'home',component: Home},
     {path:"/companyList",component:companyList},
     {path:'/',name:'home',component:Home},
-	 {path:'/Company',component:Company}
+	 {path:'/Company/:cid',component:Company,props:true}
+	 
   ]
 })

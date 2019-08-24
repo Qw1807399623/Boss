@@ -2,9 +2,9 @@
 <template>
 	<!-- 模板要求：必须有一个根标签 -->
 	<div>
-		<div class="cp_pic">
+		<div class="cp_pic" >
 			<div class="pic_title">公司照片</div>
-			<img src="../../assets/Tencent.jpg" alt="">
+			<img :src="'http://127.0.0.1:3000/img/'+list.cpic"  alt="">
 		</div>
 	</div>
 </template>
@@ -18,7 +18,8 @@
 			//默认返回空对象（没数据）
 				
 			}
-		}
+		},
+		props:['list']
 	}
 </script>
 

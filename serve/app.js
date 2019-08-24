@@ -6,6 +6,7 @@ const session=require("express-session");
 const router=require("./routes/pro");
 const reg=require("./routes/reg");
 const login=require("./routes/login");
+const company=require('./routes/company');
 const deta=require("./routes/Details");
 const details2=require("./routes/Details-bottom");
 const search = require('./routes/search')
@@ -27,7 +28,13 @@ server.use(bodyParser.urlencoded({extended:false}))
 server.use("/pro",router);
 server.use("/reg",reg);
 server.use("/login",login);
+<<<<<<< HEAD
+server.use('/company',company);
+server.use('/search',search);
+server.use('/search2',search2)
+=======
 server.use("/selectpim",selectpim)
+>>>>>>> 0d802abfaff034dcf0650493bdd6f343b7a6eb32
 server .use("/deta",deta);
 server.use('/search',search);
 server.use('/search2',search2);
